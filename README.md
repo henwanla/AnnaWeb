@@ -13,3 +13,6 @@ Open `index.html` for the Chinese style comparison portal. `night.html`, `atelie
 Expected Pages address: https://henwanla.github.io/AnnaWeb/
 
 Deployment status and the verified public address are recorded in the user’s Obsidian report after publishing.
+
+
+The revised concepts use independent page architectures: an event-led experience (`night.html`), an editorial catalogue (`atelier.html`) and a procurement workspace (`pop.html`). They retain the original six scenario directions, six product descriptions, company positioning, factory introduction, two factory images, and existing supply notes with confirmation boundaries. Factory figures, nominal specifications and customer-like scenario images are current-site claims/illustrations, not new verified evidence. No fictional founder, client case, testimonial, certification or result is introduced. `core.css` shares basic controls; each page has its own layout stylesheet. Occasion choices carry into the local brief.
