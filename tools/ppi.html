@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artwork resolution calculator | Fanique design preview</title>
+<style>
+:root{color-scheme:light;--ink:#142b32;--muted:#51636a;--paper:#f4f6f3;--surface:#fff;--line:#ced8d4;--accent:#17624f;--error:#9a2727}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"PingFang SC",sans-serif}main{max-width:1000px;margin:auto;padding:40px 24px 64px}header{max-width:740px;margin-bottom:28px}.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--accent);font-weight:700}h1{font-size:clamp(26px,4.5vw,40px);line-height:1.25;margin:12px 0 16px}h2{font-size:21px;margin:0 0 16px}p{margin:0 0 14px}small,.muted{color:var(--muted)}.layout{display:grid;grid-template-columns:1.12fr 1fr;gap:24px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}label{display:block;font-size:14px;font-weight:600}input,select{font:inherit;width:100%;min-width:0;min-height:46px;margin:7px 0 0;padding:9px 11px;border:1px solid #9eafaa;border-radius:6px;color:var(--ink);background:#fff}input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #80b8aa;outline-offset:3px}fieldset{border:0;padding:0;margin:0 0 22px}legend{font-weight:700;padding:0;margin-bottom:10px}.wide{grid-column:1/-1}.help{font-size:13px;font-weight:400;color:var(--muted);display:block;margin-top:6px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.value{font-size:34px;line-height:1.15;font-weight:750;letter-spacing:-.03em;margin:8px 0 5px;overflow-wrap:anywhere}.unit{font-size:14px;color:var(--muted)}.separator{border:0;border-top:1px solid var(--line);margin:22px 0}.status{color:var(--accent);font-weight:650}.error{color:var(--error);font-size:14px;min-height:24px;margin:12px 0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 0}button{font:inherit;border:1px solid #9eafaa;border-radius:6px;padding:10px 15px;min-height:46px;background:var(--surface);color:var(--ink);cursor:pointer}button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}details{margin-top:28px}summary{cursor:pointer;font-weight:650}details p{margin-top:12px;font-size:14px}.footer{font-size:13px;color:var(--muted);margin-top:30px;max-width:810px}.formula{font-family:ui-monospace,monospace;font-size:13px;overflow-wrap:anywhere}.diagram{display:flex;align-items:center;gap:16px;margin:20px 0}.print-box{width:100%;max-width:180px;aspect-ratio:3/2;background:linear-gradient(135deg,#dfebe3,#edf4ec);border:1px solid #8fae9f;display:flex;align-items:center;justify-content:center;min-width:0}.print-label{font-size:13px;line-height:1.5;text-align:center;padding:12px}.diagram-text{font-size:13px;max-width:190px}.meta{font-size:13px;margin-top:12px}.notice{border-left:3px solid var(--accent);padding-left:14px;margin:16px 0;font-size:14px}
+@media(max-width:700px){main{padding:28px 16px 48px}.layout{grid-template-columns:1fr;gap:16px}.panel{padding:20px}.value{font-size:30px}header{margin-bottom:20px}}
+@media(max-width:360px){.fields,.result-grid{grid-template-columns:1fr}.diagram{align-items:flex-start;flex-direction:column}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<div style="padding:12px 20px;background:#20251f;color:#f6f4ed;font:13px Arial"><a style="color:inherit" href="../index.html#resources">← Back to Fanique design preview</a> · Local planning resource</div>
+<main>
+<header>
+<div class="eyebrow">ARTWORK PREPARATION / LOCAL PLANNING TOOL</div>
+<h1>How much detail remains at the finished size?</h1>
+<p>Enter the pixels actually used and the final placement size to calculate effective PPI in both directions. Use the actual image area and model template; the closed fan length is not automatically the print width.</p>
+</header>
+<div class="layout">
+<section class="panel" aria-labelledby="inputs-heading">
+<h2 id="inputs-heading">Image and finished dimensions</h2>
+<form id="calculator" novalidate>
+<fieldset><legend>Pixels actually used</legend><div class="fields">
+<label for="pixels-x">Horizontal pixels<input id="pixels-x" type="number" inputmode="numeric" min="1" step="1" value="1800" required></label>
+<label for="pixels-y">Vertical pixels<input id="pixels-y" type="number" inputmode="numeric" min="1" step="1" value="1200" required></label>
+</div></fieldset>
+<fieldset><legend>Final placement size</legend><div class="fields">
+<label for="print-width">Width<input id="print-width" type="number" inputmode="decimal" min="0" step="any" value="30" required></label>
+<label for="print-height">Height<input id="print-height" type="number" inputmode="decimal" min="0" step="any" value="20" required></label>
+<label class="wide" for="unit">Dimension unit<select id="unit"><option value="cm">Centimetres · cm</option><option value="mm">Millimetres · mm</option><option value="in">Inches · in</option></select></label>
+</div></fieldset>
+<label for="target">Agreed target PPI (optional)<input id="target" type="number" inputmode="decimal" min="0" step="any" placeholder="Only a target agreed for the actual job"><span class="help">No default industry threshold. This estimates required pixels; it does not approve artwork.</span></label>
+<div id="error" class="error" role="alert"></div>
+<div class="actions"><button type="submit" class="primary">Recalculate</button><button type="button" id="restore-example">Restore illustrative example</button></div>
+</form>
+<p class="meta">The default 1800 × 1200 px at 30 × 20 cm is an illustrative example, not a Fanique model specification.</p>
+</section>
+<section class="panel" aria-labelledby="results-heading">
+<h2 id="results-heading">Effective resolution</h2>
+<div id="results" aria-live="polite" aria-atomic="true">
+<div class="result-grid">
+<div><span class="muted">Horizontal</span><div id="ppi-x" class="value">152.4</div><span class="unit">pixels per inch</span></div>
+<div><span class="muted">Vertical</span><div id="ppi-y" class="value">152.4</div><span class="unit">pixels per inch</span></div>
+</div>
+<div class="diagram"><div id="print-box" class="print-box"><div class="print-label">Image-area illustration<br><span id="dimensions">30 × 20 cm</span></div></div><div class="diagram-text">This rectangle is an illustration with display limits for extreme ratios. It is not a production template or confirmed fan print area.</div></div>
+<p id="ratio" class="muted">Pixel and placement proportions match.</p>
+<hr class="separator">
+<p id="target-result">No agreed target entered; required pixels have not been estimated.</p>
+<p class="notice">This result describes density only. Source detail, compression, small text and lines, print area, materials, process and sample approval require separate checks.</p>
+</div>
+</section>
+</div>
+<details>
+<summary>Calculation scope and formula</summary>
+<p class="formula">Horizontal PPI = horizontal pixels used ÷ final width in inches<br>Vertical PPI = vertical pixels used ÷ final height in inches</p>
+<p>Conversion uses 1 inch = 2.54 cm. Pixels must correspond to the actual used area. Recalculate for the actual image if cropped, rotated, stretched or used only in part.</p>
+<p>Changing resolution metadata adds no original pixels. Interpolation does not automatically create original detail. Device DPI and image PPI are different measures.</p>
+</details>
+<p class="footer">Research basis: GIMP 3.0 Print Size / Scale Image and W3C SVG image-object documentation. Local calculation only; no file upload, enquiry sending or production approval.</p>
+</main>
+<script>
+(() => {
+  'use strict';
+  const get = id => document.getElementById(id);
+  const inputIds = ['pixels-x','pixels-y','print-width','print-height','unit','target'];
+  const unitFactors = {cm:2.54,mm:25.4,in:1};
+  const format = n => n > 0 && n < .1 ? n.toExponential(2) : n.toLocaleString('en-US', {maximumFractionDigits:1});
+  const dimensionFormat = n => n > 0 && n < .001 ? n.toExponential(2) : n.toLocaleString('en-US', {maximumFractionDigits:3});
+  function calculate() {
+    const px = Number(get('pixels-x').value), py = Number(get('pixels-y').value);
+    const w = Number(get('print-width').value), h = Number(get('print-height').value);
+    const u = get('unit').value, targetRaw = get('target').value.trim();
+    const target = targetRaw === '' ? null : Number(targetRaw);
+    if (![px,py,w,h].every(n => Number.isFinite(n) && n > 0) || !Number.isInteger(px) || !Number.isInteger(py)) {
+      get('error').textContent = 'Pixels must be positive integers; width and height must be finite values greater than zero.';
+      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
+      get('dimensions').textContent = 'Awaiting valid input'; get('ratio').textContent = '';
+      get('target-result').textContent = 'Enter valid values to calculate.'; return;
+    }
+    if (target !== null && (!Number.isFinite(target) || target <= 0)) {
+      get('error').textContent = 'An agreed target must be finite and greater than zero, or left blank.';
+      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
+      get('dimensions').textContent = 'Awaiting valid input'; get('ratio').textContent = '';
+      get('target-result').textContent = 'Invalid target; required pixels have not been estimated.'; return;
+    }
+    get('error').textContent = '';
+    const widthInches = w / unitFactors[u], heightInches = h / unitFactors[u];
+    const ppiX = px / widthInches, ppiY = py / heightInches;
+    if (![widthInches,heightInches,ppiX,ppiY].every(n => Number.isFinite(n) && n > 0)) {
+      get('error').textContent = 'Values are outside the calculable range; use the actual dimensions.';
+      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
+      get('target-result').textContent = 'Required pixels have not been estimated.'; return;
+    }
+    get('ppi-x').textContent = format(ppiX); get('ppi-y').textContent = format(ppiY);
+    get('dimensions').textContent = `${dimensionFormat(w)} × ${dimensionFormat(h)} ${u}`;
+    get('print-box').style.aspectRatio = String(Math.max(.35, Math.min(3, w/h)));
+    const ratiosMatch = Math.abs((px/py)/(w/h)-1) < .001;
+    get('ratio').textContent = ratiosMatch ? 'Pixel and placement proportions match.' : 'Pixel and placement proportions differ: confirm cropping or stretching and check both directions.';
+    if (target === null) get('target-result').textContent = 'No agreed target entered; required pixels have not been estimated.';
+    else {
+      const needX = Math.ceil(widthInches*target), needY = Math.ceil(heightInches*target);
+      if (!Number.isSafeInteger(needX) || !Number.isSafeInteger(needY)) get('target-result').textContent = 'Required pixels exceed the safe integer range; check the actual values.';
+      else get('target-result').textContent = `At the entered ${format(target)} PPI, at least ${format(needX)} × ${format(needY)} px are estimated. This is not artwork approval; interpolation does not prove the original has that detail.`;
+    }
+  }
+  get('calculator').addEventListener('submit', event => {event.preventDefault();calculate();});
+  inputIds.forEach(id => get(id).addEventListener('input', calculate));
+  get('restore-example').addEventListener('click', () => {get('calculator').reset();calculate();});
+  calculate();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compare custom hand fan quotes</title>
+  <meta name="description" content="Compare supplied whole-order amounts in the same currency and scope. Keep costs not yet quoted separate from confirmed costs.">
+  <style>
+    :root {color-scheme:light;--ink:#202426;--muted:#526066;--paper:#f5f5ef;--line:#d3d9d7;--accent:#ff5a36;--white:#fff;--green:#174b3a;--soft:#edf4ef}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    header,main,footer{width:min(1160px,calc(100% - 40px));margin:auto}header{padding:36px 0 22px} .brand{font-size:12px;letter-spacing:.12em;font-weight:750}h1{font-size:clamp(30px,5vw,54px);line-height:1.08;max-width:800px;margin:18px 0}h2{font-size:23px;line-height:1.2;margin:0 0 14px}h3{font-size:17px;margin:0 0 8px}p{margin:0 0 16px}.intro{max-width:820px;color:var(--muted)}
+    .bar{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}button{font:inherit;color:var(--ink);background:var(--white);border:1px solid var(--ink);padding:11px 17px;border-radius:8px;cursor:pointer;min-height:46px;font-weight:650}button.primary{background:var(--accent);border-color:var(--accent)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:3px}button:hover{filter:brightness(.96)}a{color:var(--green);text-underline-offset:3px}
+    .quotes{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card,.results,.method{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px;min-width:0}.field{margin-bottom:15px}label{display:block;font-weight:650;margin-bottom:5px}input,select{width:100%;max-width:100%;min-width:0;background:white;color:var(--ink);border:1px solid #7d898c;border-radius:7px;padding:10px 11px;font:inherit;min-height:45px}input[disabled]{background:#eff1f0;color:#4a5559}.meta-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.wide{grid-column:1/-1}.hint{font-size:13px;color:var(--muted);margin:6px 0 0}.cost-row{padding:14px 0;border-top:1px solid var(--line)}.cost-fields{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}.cost-fields label{font-size:13px}.cost-row h3{font-size:15px}.quote-summary{background:var(--soft);padding:16px;border-radius:10px;margin-top:16px}.money{font-size:24px;line-height:1.25;font-weight:750;overflow-wrap:anywhere}.status{font-size:14px;margin-top:7px}.check{display:flex;align-items:flex-start;gap:10px;margin:20px 0;font-weight:500}.check input{width:22px;min-height:22px;flex:0 0 22px;margin-top:3px}.comparison{border-left:4px solid var(--accent);padding-left:16px}.note{padding:12px 16px;background:#fff4dc;border:1px solid #e0c57b;border-radius:8px;margin-bottom:18px}.method{display:grid;grid-template-columns:1fr 1fr;gap:24px}.method ul{padding-left:20px;margin:0}.method li{margin:6px 0}footer{font-size:13px;color:var(--muted);padding:10px 0 36px}.error{color:#8c2218;font-size:13px;margin:7px 0 0}.sr{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}.card legend{padding:0;font-size:23px;font-weight:700;margin-bottom:14px}.card fieldset{border:0;padding:0;margin:0;min-width:0}#example-notice[hidden]{display:none}details{margin-top:12px}summary{cursor:pointer;font-weight:650}
+    @media(max-width:760px){header,main,footer{width:calc(100% - 28px)}header{padding-top:24px}.quotes,.method{grid-template-columns:1fr}.card,.results,.method{padding:18px}.cost-fields{grid-template-columns:1fr}.meta-fields{gap:0 10px}.bar button{flex:1}h1{font-size:36px}}
+    @media(max-width:360px){.meta-fields{grid-template-columns:1fr}.wide{grid-column:auto}h1{font-size:31px}}
+  </style>
+<meta name="robots" content="noindex"></head>
+<body>
+<div style="padding:12px 20px;background:#20251f;color:#f6f4ed;font:13px Arial"><a style="color:inherit" href="../index.html#resources">← Back to Fanique design preview</a> · Local planning resource</div>
+  <header>
+    <div class="brand">FANIQUE · BUYER TOOLS</div>
+    <h1>Compare the scope,<br>then compare the cost.</h1>
+    <p class="intro">Put two custom hand fan quotes on the same basis. Enter whole-order amounts, mark what is already included, and keep costs not yet quoted visible.</p>
+    <div class="bar"><button id="load-example">Load a fictional example</button><button id="clear-inputs">Clear entries</button><button id="download-csv" class="primary">Download CSV for spreadsheet review</button></div>
+  </header>
+  <main>
+    <p id="example-notice" class="note" hidden>Fictional example only. These amounts are not Fanique prices, tax rates, freight estimates or supplier offers.</p>
+    <noscript><p class="note">The calculator needs JavaScript. The comparison method below is still available; list unknown amounts separately when comparing quotes.</p></noscript>
+    <form id="comparison-form" novalidate>
+      <div class="quotes" id="quote-cards"></div>
+      <section class="results" aria-labelledby="comparison-title">
+        <h2 id="comparison-title">Are these amounts comparable?</h2>
+        <label class="check" for="same-scope"><input id="same-scope" type="checkbox"><span>I have confirmed the same product specification, artwork, packing, quantity basis and receiving point for both quotes.</span></label>
+        <div id="comparison-result" class="comparison" aria-live="polite"></div>
+        <p class="hint">A delivery-term label alone does not confirm which costs are included. Compare supplied amounts in one currency; this tool does not convert currencies or choose a supplier.</p>
+      </section>
+    </form>
+    <section class="method" aria-label="Comparison method">
+      <div><h2>Count each cost once.</h2><p>The quoted amount is the whole-order amount supplied by the seller. For each cost below, choose:</p><ul><li><strong>Not yet quoted:</strong> the amount or its scope is unknown.</li><li><strong>Included:</strong> already covered by the quoted amount; add nothing again.</li><li><strong>Confirmed extra:</strong> enter the additional whole-order amount.</li><li><strong>Not applicable:</strong> confirmed to be outside this purchase.</li></ul></div>
+      <div><h2>Check before comparing.</h2><ul><li>Match model, dimensions, materials, print sides, artwork version and quantities per design.</li><li>Confirm delivery term, named place, handover point and which services each amount covers.</li><li>Keep sample, setup, import and optional costs explicit. Unknown does not mean zero.</li><li>Check quote validity and payment terms separately. A complete entered cost is not a delivery guarantee or a quality assessment.</li></ul><details><summary>Where the method comes from</summary><p class="hint">The cost fields are a comparison worksheet. <a href="https://iccwbo.org/business-solutions/incoterms-rules/">ICC explains Incoterms rules and their scope.</a> This tool does not reproduce the full rules or determine tax, customs or carrier requirements.</p></details></div>
+    </section>
+  </main>
+  <footer><p>Your entries stay in this browser tab. The CSV is generated locally. No amounts are sent to a server, and no email is needed.</p><p>CSV text that starts like a spreadsheet formula receives a leading tab. The tab remains in the exported data; check these text fields when importing into another system.</p><p>Prepared as a research sample. Production prices, delivery options and service availability must be confirmed for the actual order.</p></footer>
+  <script>
+    'use strict';
+    const costs = [
+      ['origin','Origin & handling outside the quote'],
+      ['transport','Main transport outside the quote'],
+      ['import','Import charges outside the quote'],
+      ['delivery','Final delivery outside the quote'],
+      ['extras','Setup, sample & other agreed extras']
+    ];
+    const currencies = ['USD','EUR','GBP','CAD','AUD','CNY','JPY'];
+    const quoteCards = document.getElementById('quote-cards');
+    function costMarkup(letter,key,title){return `<div class="cost-row"><h3>${title}</h3><div class="cost-fields"><div><label for="${letter}-${key}-state">Cost status</label><select id="${letter}-${key}-state" data-cost-state><option value="unknown">Not yet quoted</option><option value="included">Included in quoted amount</option><option value="extra">Confirmed extra cost</option><option value="na">Not applicable — confirmed</option></select></div><div><label for="${letter}-${key}-amount">Extra amount · whole order</label><input id="${letter}-${key}-amount" inputmode="decimal" autocomplete="off" placeholder="Not yet quoted" disabled aria-describedby="${letter}-${key}-amount-error"><p id="${letter}-${key}-amount-error" class="error" hidden>Enter a non-negative amount with up to two decimals.</p></div></div></div>`;}
+    for(const letter of ['a','b']){
+      const card=document.createElement('section'); card.className='card';
+      card.innerHTML=`<fieldset><legend>Quote ${letter.toUpperCase()}</legend><div class="meta-fields"><div class="field wide"><label for="${letter}-reference">Quote reference</label><input id="${letter}-reference" autocomplete="off" maxlength="100" placeholder="Optional reference"></div><div class="field"><label for="${letter}-quantity">Quantity · pieces</label><input id="${letter}-quantity" inputmode="numeric" autocomplete="off" placeholder="Not confirmed"></div><div class="field"><label for="${letter}-currency">Currency</label><select id="${letter}-currency"><option value="">Not confirmed</option>${currencies.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div><div class="field wide"><label for="${letter}-quoted">Quoted amount · whole order</label><input id="${letter}-quoted" inputmode="decimal" autocomplete="off" placeholder="Not yet quoted" aria-describedby="${letter}-quoted-error"><p id="${letter}-quoted-error" class="error" hidden>Enter a non-negative amount with up to two decimals.</p></div><div class="field wide"><label for="${letter}-scope">Delivery term & receiving point</label><input id="${letter}-scope" autocomplete="off" maxlength="180" placeholder="Record the agreed scope"><p class="hint">For your record; matching text alone does not confirm scope.</p></div></div>${costs.map(([key,title])=>costMarkup(letter,key,title)).join('')}<div class="quote-summary"><div id="${letter}-summary-label">Known subtotal</div><div class="money" id="${letter}-subtotal">—</div><div class="status" id="${letter}-status"></div></div></fieldset>`;
+      quoteCards.appendChild(card);
+    }
+    const form=document.getElementById('comparison-form');
+    const get=id=>document.getElementById(id);
+    function parseAmount(value){
+      const s=value.trim(); if(!s) return {state:'unknown',cents:null};
+      if(!/^\d+(?:\.\d{1,2})?$/.test(s)) return {state:'invalid',cents:null};
+      const [whole,fraction='']=s.split('.'); const cents=Number(whole)*100+Number(fraction.padEnd(2,'0'));
+      if(!Number.isSafeInteger(cents)||cents>100000000000) return {state:'invalid',cents:null};
+      return {state:'confirmed',cents};
+    }
+    function format(cents,currency){return `${currency||'Currency unconfirmed'} ${(cents/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;}
+    function showError(id,invalid){get(id).setAttribute('aria-invalid',String(invalid));get(id+'-error').hidden=!invalid;}
+    function readQuote(letter){
+      const quoted=parseAmount(get(letter+'-quoted').value); showError(letter+'-quoted',quoted.state==='invalid');
+      let subtotal=quoted.cents??0, unknown=quoted.state==='unknown'?1:0, invalid=quoted.state==='invalid'?1:0, confirmedAmounts=quoted.state==='confirmed'?1:0;
+      const entries=[];
+      for(const [key,title] of costs){
+        const state=get(`${letter}-${key}-state`).value; const input=get(`${letter}-${key}-amount`);
+        input.disabled=state!=='extra'; input.placeholder=state==='extra'?'Enter confirmed extra':state==='unknown'?'Not yet quoted':'No extra amount added';
+        const amount=state==='extra'?parseAmount(input.value):{state:'not-added',cents:null};
+        showError(`${letter}-${key}-amount`,amount.state==='invalid');
+        if(state==='unknown'||amount.state==='unknown')unknown++;
+        if(amount.state==='invalid')invalid++;
+        if(amount.state==='confirmed'){subtotal+=amount.cents;confirmedAmounts++;}
+        entries.push({key,title,state,amount:state==='extra'?input.value.trim():''});
+      }
+      const quantityText=get(letter+'-quantity').value.trim();
+      const quantity=/^[1-9]\d*$/.test(quantityText)&&Number.isSafeInteger(Number(quantityText))?Number(quantityText):null;
+      const currency=get(letter+'-currency').value;
+      const scope=get(letter+'-scope').value.trim();
+      const complete=unknown===0&&invalid===0;
+      get(letter+'-summary-label').textContent=complete?'Complete entered cost within supplied scope':'Known subtotal — incomplete';
+      get(letter+'-subtotal').textContent=confirmedAmounts?format(subtotal,currency):'—';
+      get(letter+'-status').textContent=invalid?`${invalid} invalid amount(s). Correct them before comparing.`:unknown?`${unknown} amount or scope item(s) not confirmed. Unknown costs are not zero.`:'All listed cost items have a recorded status. Check that the list covers the actual order.';
+      return {letter,reference:get(letter+'-reference').value.trim(),quantity,quantityText,currency,scope,quoted,quotedText:get(letter+'-quoted').value.trim(),subtotal,complete,unknown,invalid,confirmedAmounts,entries};
+    }
+    function comparison(a,b){
+      const reasons=[];
+      if(!get('same-scope').checked)reasons.push('Confirm the same specification and receiving point.');
+      if(!a.quantity||!b.quantity)reasons.push('Confirm a positive whole-piece quantity for each quote.');
+      else if(a.quantity!==b.quantity)reasons.push('Quantities differ. Keep them as separate order scenarios.');
+      if(!a.currency||!b.currency)reasons.push('Confirm the currency of each quote.');
+      else if(a.currency!==b.currency)reasons.push('Currencies differ. No currency conversion is applied.');
+      if(!a.scope||!b.scope)reasons.push('Record the delivery scope and receiving point for both quotes.');
+      if(!a.complete||!b.complete)reasons.push('Resolve all unknown or invalid cost items.');
+      if(reasons.length)return {ready:false,text:'Comparison not ready. '+reasons.join(' ')};
+      const difference=b.subtotal-a.subtotal;
+      const text=difference===0?`The entered costs are equal: ${format(a.subtotal,a.currency)} each.`:`Quote A: ${format(a.subtotal,a.currency)}. Quote B: ${format(b.subtotal,b.currency)}. Entered cost difference: ${format(Math.abs(difference),a.currency)}; Quote ${difference>0?'B':'A'} is higher.`;
+      return {ready:true,text:text+' This compares supplied cost only, not supplier quality, risk or delivery performance.'};
+    }
+    function update(){const a=readQuote('a'),b=readQuote('b');get('comparison-result').textContent=comparison(a,b).text;}
+    form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('submit',e=>e.preventDefault());
+    get('load-example').addEventListener('click',()=>{
+      form.reset();
+      for(const letter of ['a','b']){
+        get(letter+'-reference').value=`Fictional ${letter.toUpperCase()}`;get(letter+'-quantity').value='1000';get(letter+'-currency').value='USD';get(letter+'-scope').value='Fictional receiving point; scope confirmed for this example';
+        for(const [key]of costs)get(`${letter}-${key}-state`).value='included';
+      }
+      get('a-quoted').value='1000';get('b-quoted').value='1300';
+      for(const [key,value]of [['origin','100'],['transport','250'],['import','100'],['delivery','50']]){get(`a-${key}-state`).value='extra';get(`a-${key}-amount`).value=value;}
+      for(const [key,value]of [['import','200'],['delivery','50']]){get(`b-${key}-state`).value='extra';get(`b-${key}-amount`).value=value;}
+      get('same-scope').checked=true;get('example-notice').hidden=false;update();
+    });
+    get('clear-inputs').addEventListener('click',()=>{form.reset();get('example-notice').hidden=true;update();});
+    function csvCell(value){let s=String(value??'');if(/^\s*[=+@\-＝＋－＠]/u.test(s))s="\t"+s;return '"'+s.replaceAll('"','""')+'"';}
+    get('download-csv').addEventListener('click',()=>{
+      const a=readQuote('a'),b=readQuote('b'),result=comparison(a,b);
+      const rows=[['Custom hand fan quote comparison','Version 2 — spreadsheet review'],['Example loaded',!get('example-notice').hidden?'Fictional example':'No'],['Same scope confirmed',get('same-scope').checked?'Yes':'No'],['Comparison ready',result.ready?'Yes':'No'],['Comparison note',result.text],[],['Field','Quote A','Quote B'],['Reference',a.reference,b.reference],['Quantity',a.quantityText,b.quantityText],['Currency',a.currency,b.currency],['Delivery scope',a.scope,b.scope],['Quoted amount status',a.quoted.state,b.quoted.state],['Quoted amount whole order',a.quotedText,b.quotedText]];
+      for(let i=0;i<costs.length;i++){rows.push([costs[i][1]+' — status',a.entries[i].state,b.entries[i].state]);rows.push([costs[i][1]+' — extra amount',a.entries[i].amount,b.entries[i].amount]);}
+      rows.push(['Known subtotal — not a complete cost when items are unresolved',a.confirmedAmounts?format(a.subtotal,a.currency):'',b.confirmedAmounts?format(b.subtotal,b.currency):''],['All listed costs recorded',a.complete?'Yes':'No',b.complete?'Yes':'No']);
+      const csv='\ufeff'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='hand-fan-quote-comparison-v2.csv';link.click();URL.revokeObjectURL(url);
+    });
+    update();
+  </script>
+</body>
+</html>
