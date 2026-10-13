@@ -2,7 +2,7 @@
 
 Informational website redesign prototype for reviewing the current Fanique page against a more coherent product and buyer-planning layout.
 
-The page contains six product-family cards, local filtering, a product-aware project outline, four planning guides, two local calculators and empty CSV worksheets. It never automatically sends enquiries and processes no orders or payments. Direct WhatsApp links open the existing Fanique contact with product, occasion and page context; the visitor reviews and sends the message in WhatsApp. The optional local outline can also be opened in WhatsApp, including details the visitor entered. There are no analytics, external font requests or paid services. Search robots are asked not to index this comparison site.
+The page contains six product-family cards, local filtering, a product-aware project outline, four planning guides, two local calculators and empty CSV worksheets. It never automatically sends enquiries and processes no orders or payments. Direct WhatsApp links open the existing Fanique contact with product, occasion and page context; the visitor reviews and sends the message in WhatsApp. The optional local outline can also be opened in WhatsApp, including details the visitor entered. There are no analytics, external font requests or paid services. HTML pages ask search robots not to index the previews. Download files have their own responses and unknown actual indexing states.
 
 Product images are optimized derivatives of images published on the current Fanique website and are used for this user-requested redesign comparison. Product-family labels are not independently verified manufacturing specifications. No prices, minimum quantities or lead times are invented. The visual mark is a concept for this preview. The dark clack fan cutout is a background-removal derivative; the bamboo and PVC photos remain intact. Proposed use directions are concepts, not customer case studies.
 
@@ -35,3 +35,10 @@ The project-brief CSV is an optional follow-up quote record. It does not gate di
 三套导航按各自任务描述用途、扇型、制作与项目沟通。画册首屏目录明确Fans & materials、Printing & making与Discuss your idea；采购版首屏主按钮直接进入现有六扇型比较表，场景仍可从导航/项目地图进入。活动版继续从场景开始。
 
 本次仅修改三HTML的16个入口标签/一个对应锚点目标及本说明。产品、场景、公司/工厂、供货说明、所有WhatsApp上下文、初询无日期、表单和代码保持；预览继续noindex。静态文本/目标和资产保留核验不替代手机视觉、用户理解、实际点击、开聊或收件验证。
+
+
+## Procurement workbook
+
+The four full concepts keep their existing CSV downloads and add `downloads/fanique-procurement-worksheets.xlsx` beside the task resources. The workbook preserves both original blank worksheet matrices, keeps their English labels, and adds a separate Read me sheet with public source URLs and native hyperlinks. Its two WhatsApp links prefill the resource topic and public workbook/comparison URLs. They do not include completed cells or any product/occasion selected on a website page; the reader reviews and sends the message.
+
+The workbook is an optional follow-up record. Delivery dates belong to relevant planning tasks and remain blank. Original direct contacts, date-free first contact, scenarios, factory material, images, controls and scripts are preserved. Generated views of all three workbook sheets and the saved link metadata were checked; spreadsheet-client clicking, native application behavior and WhatsApp delivery were not tested. This preview resource does not establish production release, file indexing or traffic gains.
