@@ -49,3 +49,10 @@ The workbook is an optional follow-up record. Delivery dates belong to relevant 
 Each of the six product buttons in all four complete previews now prefills its own model, a relevant question and the public page URL. Custom Clack and Bamboo ask about artwork, quantity per design and sample options; LED asks about power setup, artwork and packing; PVC asks about frame/fabric materials and suitable use; stock formats ask about actual photos or availability, quantities and packing. These are discussion topics, not guarantees of stock, specifications or services. The product link remains tied to its own model even if a different product was previously selected. Optional occasion selection remains available through the existing script.
 
 The change preserves the existing layouts, factory/scenario assets, dates-free first contact, download files, other contacts and scripts. Static fallback messages and local JavaScript context checks are separate from actual WhatsApp app opening, sending and business receipt, which remain untested.
+
+
+## Page identity and share illustrations
+
+The comparison entry and the three new concepts now expose Open Graph titles, descriptions, their own public page URLs and four local 1200 x 630 PNGs. The illustrations summarize the existing information structures and CSS palettes; they are original diagrams clearly labeled as design previews, not website screenshots, manufacturing photographs or delivered customer projects. The existing text, product/scenario/factory assets, scripts, downloads, contact contexts, canonical declarations and noindex directives remain unchanged. The older reference page remains a reference.
+
+PNG dimensions, the four file images and the metadata-to-page mapping were checked. Actual app sharing cards, cache refresh, smartphone presentation and WhatsApp opening/sending/receipt remain unverified. The preview diagram images are not proposed as real product or production-page search images. Production representative-image choices still require relevant real materials and serving paths.
