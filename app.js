@@ -58,7 +58,7 @@
   function refreshContacts() {
     const purpose=d.getElementById('purpose').value;
     d.querySelectorAll('[data-whatsapp="contact"]').forEach(link=>{
-      link.href=whatsappUrl(contactMessage({model:link.dataset.waProduct || model.value,purpose,topic:link.dataset.waTopic},source.href));
+      link.href=whatsappUrl(contactMessage({model:link.dataset.waProduct || model.value,purpose:link.dataset.waPurpose || purpose,topic:link.dataset.waTopic},source.href));
     });
   }
   function invalidate(){output.hidden=true;text.value='';status.textContent='';refreshContacts();}

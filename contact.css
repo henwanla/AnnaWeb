@@ -9,3 +9,6 @@
 .journal-cover .hero-contact{margin:0 auto 25px}
 .format-table .product-contact{min-width:125px}
 @media(max-width:480px){.product-contact{font-size:12px}.brief-contact{width:100%}}
+
+.occasion-link .scene-action{min-height:44px;padding-block:12px;margin-top:14px;line-height:1.5;text-decoration:underline;text-underline-offset:5px;overflow-wrap:anywhere}
+.occasion-link .scene-contact{display:block;font-size:12px;line-height:1.6}
