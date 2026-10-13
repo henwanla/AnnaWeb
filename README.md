@@ -1,5 +1,23 @@
 # Fanique design comparison
 
+## Official Fanique website
+
+Visit the **[Fanique official website](https://getfanique.com/)** for the current product and company information. This repository hosts website design comparisons and optional planning resources; the published previews remain separate from the live website.
+
+The following links point to the live website's existing pages:
+
+| What you want to explore | Live website page |
+| --- | --- |
+| Current product and company overview | [Fanique official website](https://getfanique.com/) |
+| Bamboo fan sourcing | [Bamboo fan supplier](https://getfanique.com/bamboo-fan-supplier/) |
+| Custom fan manufacturing | [Custom fan manufacturer](https://getfanique.com/custom-fan-manufacturer/) |
+| Wholesale bamboo fans | [Wholesale bamboo fans](https://getfanique.com/wholesale-bamboo-fans/) |
+| OEM folding fans | [OEM folding fans in China](https://getfanique.com/oem-folding-fans-china/) |
+
+**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
+
+## About the design comparison
+
 Informational website redesign prototype for reviewing the current Fanique page against a more coherent product and buyer-planning layout.
 
 The page contains six product-family cards, local filtering, a product-aware project outline, four planning guides, two local calculators and empty CSV worksheets. It never automatically sends enquiries and processes no orders or payments. Direct WhatsApp links open the existing Fanique contact with product, occasion and page context; the visitor reviews and sends the message in WhatsApp. The optional local outline can also be opened in WhatsApp, including details the visitor entered. There are no analytics, external font requests or paid services. HTML pages ask search robots not to index the previews. Download files have their own responses and unknown actual indexing states.
