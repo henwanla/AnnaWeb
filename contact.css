@@ -1,0 +1,11 @@
+.whatsapp-link{display:inline-block;max-width:100%;min-height:44px;padding:12px 0;line-height:1.5;font-size:12px;text-decoration:underline;text-underline-offset:5px;overflow-wrap:anywhere}
+.hero-contact{display:block;width:fit-content;margin-top:15px}
+.product-contact{display:block;font-size:11px}
+.brief-contact{display:block;width:fit-content;margin-top:12px}
+.event-format .product-contact{grid-column:4;justify-self:start}
+.object-caption .product-contact{grid-column:1/-1}
+.site-header nav .nav-contact{white-space:nowrap;text-decoration:none}
+@media(max-width:800px){.event-format .product-contact{grid-column:3}.site-header nav .nav-contact{white-space:normal}}
+.journal-cover .hero-contact{margin:0 auto 25px}
+.format-table .product-contact{min-width:125px}
+@media(max-width:480px){.product-contact{font-size:12px}.brief-contact{width:100%}}
