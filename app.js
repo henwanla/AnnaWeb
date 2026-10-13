@@ -7,6 +7,8 @@
     if (Object.hasOwn(products, data.model)) lines.push('Product: ' + products[data.model]);
     const purpose = String(data.purpose || '').trim().slice(0,120);
     if (purpose) lines.push('Intended use: ' + purpose);
+    const topic = String(data.topic || '').trim().slice(0,120);
+    if (topic) lines.push('Question: ' + topic);
     if (source) lines.push('Page: ' + source);
     return lines.join('\n');
   }
@@ -56,7 +58,7 @@
   function refreshContacts() {
     const purpose=d.getElementById('purpose').value;
     d.querySelectorAll('[data-whatsapp="contact"]').forEach(link=>{
-      link.href=whatsappUrl(contactMessage({model:link.dataset.waProduct || model.value,purpose},source.href));
+      link.href=whatsappUrl(contactMessage({model:link.dataset.waProduct || model.value,purpose,topic:link.dataset.waTopic},source.href));
     });
   }
   function invalidate(){output.hidden=true;text.value='';status.textContent='';refreshContacts();}
