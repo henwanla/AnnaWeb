@@ -23,3 +23,9 @@ Contact revision: all four full concepts retain the existing WhatsApp number in 
 Each of the six occasion cards in the three revised concepts keeps a local planning link and adds its own direct WhatsApp link. The message fixes that card's occasion and discussion topic, even if another occasion was previously selected; a deliberately selected product and the public source page are also included. The fixed occasion, topic and public source are preserved without JavaScript. Neither path sends a message automatically.
 
 The project-brief CSV is an optional follow-up quote record. It does not gate direct WhatsApp or the original-site contact form. Delivery deadlines and venue rules are recorded only when relevant; no first-contact date picker is introduced.
+
+## 图标资源
+
+保留原有 `assets/mark.svg` 扇形图标，新增同一SVG离线导出的96/512像素PNG及16/32/48/96像素ICO。八页均声明相对路径PNG，原六页SVG声明保留，两个工具页也使用同一图标。页面正文、联系代码与预览noindex保持。
+
+这些是对比站的图标资源；生产站默认图标404与声明缺口另列实施方案。浏览器图标、Google favicon及页面代表图分别验，公开预览图标不代表生产站索引或Google展示。
