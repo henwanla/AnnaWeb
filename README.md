@@ -29,3 +29,9 @@ The project-brief CSV is an optional follow-up quote record. It does not gate di
 保留原有 `assets/mark.svg` 扇形图标，新增同一SVG离线导出的96/512像素PNG及16/32/48/96像素ICO。八页均声明相对路径PNG，原六页SVG声明保留，两个工具页也使用同一图标。页面正文、联系代码与预览noindex保持。
 
 这些是对比站的图标资源；生产站默认图标404与声明缺口另列实施方案。浏览器图标、Google favicon及页面代表图分别验，公开预览图标不代表生产站索引或Google展示。
+
+## 采购任务入口
+
+三套导航按各自任务描述用途、扇型、制作与项目沟通。画册首屏目录明确Fans & materials、Printing & making与Discuss your idea；采购版首屏主按钮直接进入现有六扇型比较表，场景仍可从导航/项目地图进入。活动版继续从场景开始。
+
+本次仅修改三HTML的16个入口标签/一个对应锚点目标及本说明。产品、场景、公司/工厂、供货说明、所有WhatsApp上下文、初询无日期、表单和代码保持；预览继续noindex。静态文本/目标和资产保留核验不替代手机视觉、用户理解、实际点击、开聊或收件验证。
