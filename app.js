@@ -38,6 +38,8 @@
   toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('is-open',open);});
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
   d.addEventListener('keydown',e=>{if(e.key==='Escape' && toggle.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
+  nav.classList.add('menu-ready');
+  toggle.classList.add('menu-ready');
   const cards=[...d.querySelectorAll('.product-card')];
   d.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
     d.querySelectorAll('[data-filter]').forEach(b=>{const on=b===button;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
