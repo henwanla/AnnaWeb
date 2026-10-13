@@ -90,3 +90,10 @@ The comparison portal links directly to the resource guide with a normal HTML an
 [Folding hand fan artwork resolution calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/) reuses the existing reviewed PPI calculation without changing its fields or arithmetic. It explains that placed image dimensions differ from closed fan length and that PPI alone does not approve artwork. Illustrative defaults are not Fanique product specifications. No files or inputs are uploaded and no enquiry is sent. The optional WhatsApp link includes a fixed artwork topic and public page address, with no calculator values.
 
 This distinct documentation URL has a self-canonical, English title/description, index/follow declaration and ordinary resource-guide/README links. The eight original comparison/calculator previews retain noindex. The resource sitemap includes only the two indexable documentation pages. Static/Node calculation checks and HTTP publication checks do not establish current browser/device behavior, search indexing, ranking, traffic or business receipt.
+
+
+## Event-led scene-to-format path
+
+The event experience now lets each occasion's primary link lead to the existing six-format display before the optional project outline. The existing scene script retains the selected occasion and shows it beside the formats as well as in the outline. A normal link after the format list leads to the existing printing and packing section. Product selection still opens the optional outline; no factory review or form is required before direct contact.
+
+All six scene-specific WhatsApp links, product questions, factory contact, original imagery/introduction, downloads and date-free first contact are retained. The editorial and procurement concepts keep their own paths. The event preview remains noindex. Static paths, file preservation and local event-handler checks do not confirm actual browser scrolling, mobile layout, WhatsApp sending/receipt or organic growth.
