@@ -42,3 +42,10 @@ The project-brief CSV is an optional follow-up quote record. It does not gate di
 The four full concepts keep their existing CSV downloads and add `downloads/fanique-procurement-worksheets.xlsx` beside the task resources. The workbook preserves both original blank worksheet matrices, keeps their English labels, and adds a separate Read me sheet with public source URLs and native hyperlinks. Its two WhatsApp links prefill the resource topic and public workbook/comparison URLs. They do not include completed cells or any product/occasion selected on a website page; the reader reviews and sends the message.
 
 The workbook is an optional follow-up record. Delivery dates belong to relevant planning tasks and remain blank. Original direct contacts, date-free first contact, scenarios, factory material, images, controls and scripts are preserved. Generated views of all three workbook sheets and the saved link metadata were checked; spreadsheet-client clicking, native application behavior and WhatsApp delivery were not tested. This preview resource does not establish production release, file indexing or traffic gains.
+
+
+## Product-specific WhatsApp questions
+
+Each of the six product buttons in all four complete previews now prefills its own model, a relevant question and the public page URL. Custom Clack and Bamboo ask about artwork, quantity per design and sample options; LED asks about power setup, artwork and packing; PVC asks about frame/fabric materials and suitable use; stock formats ask about actual photos or availability, quantities and packing. These are discussion topics, not guarantees of stock, specifications or services. The product link remains tied to its own model even if a different product was previously selected. Optional occasion selection remains available through the existing script.
+
+The change preserves the existing layouts, factory/scenario assets, dates-free first contact, download files, other contacts and scripts. Static fallback messages and local JavaScript context checks are separate from actual WhatsApp app opening, sending and business receipt, which remain untested.
