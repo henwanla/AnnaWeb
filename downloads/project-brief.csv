@@ -1,12 +1,13 @@
-﻿Field,Required context,Buyer entry,Supplier confirmation
+﻿Field,Quote context (when relevant),Buyer entry,Supplier confirmation
+Worksheet purpose,Optional follow-up quote record; start a conversation without completing it,,
 Requirement version,Date and revision,,
 Model and dimensions,Closed/open width and height; measuring endpoints,,
 Materials,Frame and fabric separately,,
 Artwork and print sides,File version; side/colour scope,,
 Quantity split,Total and each design/colour,,
 Packing,Individual and outer carton requirements,,
-Receiving point,Country and required handover point,,
-Required arrival date,Event deadline and buffer separately,,
+Receiving point,Country and handover point when discussing a delivery quote,,
+Delivery deadline (if applicable),"If timing matters, keep the usable-by date, event date and buffer separate",,
 Delivery scope,Term; named place; rules version; exclusions,,
 Sample approval,Object/version/what approval covers,,
-Venue and distribution rules,Event/year/spaces; fan type; personal use vs giveaways; rule link/date; applicable permission,,
+Venue and distribution rules (when relevant),Event/year/spaces; fan type; personal use vs giveaways; rule link/date; applicable permission,,
