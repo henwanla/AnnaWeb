@@ -101,3 +101,10 @@ This distinct documentation URL has a self-canonical, English title/description,
 The event experience now lets each occasion's primary link lead to the existing six-format display before the optional project outline. The existing scene script retains the selected occasion and shows it beside the formats as well as in the outline. A normal link after the format list leads to the existing printing and packing section. Product selection still opens the optional outline; no factory review or form is required before direct contact.
 
 All six scene-specific WhatsApp links, product questions, factory contact, original imagery/introduction, downloads and date-free first contact are retained. The editorial and procurement concepts keep their own paths. The event preview remains noindex. Static paths, file preservation and local event-handler checks do not confirm actual browser scrolling, mobile layout, WhatsApp sending/receipt or organic growth.
+
+
+## Hosted PPI calculator for artwork guides
+
+[Hosted embed example](https://henwanla.github.io/AnnaWeb/tools/ppi-embed-example.html) and [downloadable HTML snippet](https://henwanla.github.io/AnnaWeb/downloads/folding-hand-fan-ppi-embed.html.txt) let an editor optionally place the already reviewed blank PPI calculation in a tutorial. The widget and example request noindex; the full calculation guide remains the indexable explanation. The widget has no required brand link; the optional guide link in the snippet may be removed or replaced.
+
+The iframe uses an opaque-origin script sandbox and exchanges only bounded content-height messages with the stated public parent origin. It uploads no artwork or calculation inputs. The host must permit the iframe and inline script; GitHub Pages still receives normal tool-page requests and may keep hosting logs. This offer does not license product/factory images or the rest of the repository for reuse. Publication/header and local callback checks are separate from actual third-party adoption, current browser/mobile use and organic referrals.

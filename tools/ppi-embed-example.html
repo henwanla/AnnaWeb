@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow"><title>Folding fan PPI calculator · Hosted embed example</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f4f6f3;color:#172f35;font:17px/1.6 system-ui,sans-serif}main{max-width:920px;margin:auto;padding:32px 20px}h1{line-height:1.2;font-size:32px}a{color:#115f49;overflow-wrap:anywhere}p{max-width:720px}.small{font-size:14px;color:#53636a}@media(max-width:360px){main{padding:20px 12px}h1{font-size:27px}}</style></head><body><main>
+<h1>Check image pixels inside an artwork guide.</h1>
+<p>Use the pixels actually placed and their final size from the correct product template. Each direction is calculated separately; the result is not artwork approval.</p>
+<p class="small">This example loads the hosted calculator below. The link to the full guide is optional and may be removed or replaced; using the calculator does not require a brand link.</p>
+<div class="fanique-ppi-embed" style="max-width:720px">
+  <iframe data-widget-source="https://henwanla.github.io/AnnaWeb/tools/ppi-widget.html"
+    title="Folding hand fan artwork pixel density calculator"
+    loading="lazy" sandbox="allow-scripts" referrerpolicy="no-referrer"
+    style="display:block;width:100%;height:800px;border:1px solid #b6c7c0;border-radius:10px"></iframe>
+  <p><a href="https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/">Open the full folding fan calculation guide</a> if embedded content is unavailable.</p>
+</div>
+<script>
+(() => {
+  'use strict';
+  const container = document.currentScript.previousElementSibling;
+  const frame = container.querySelector('iframe');
+  window.addEventListener('message', event => {
+    // Opaque null is expected for this sandbox; match the exact window as well.
+    if (event.source !== frame.contentWindow || event.origin !== 'null') return;
+    const data = event.data;
+    if (!data || data.type !== 'ppi-widget-height-v1' ||
+        !Number.isSafeInteger(data.height) || data.height < 200 || data.height > 2600) return;
+    frame.style.height = data.height + 'px';
+  });
+  const url = new URL(frame.dataset.widgetSource);
+  url.searchParams.set('parentOrigin', location.origin);
+  frame.src = url.href;
+})();
+</script>
+
+<p><a href="https://henwanla.github.io/AnnaWeb/downloads/folding-hand-fan-ppi-embed.html.txt" download>Download the HTML embed snippet</a> · <a href="https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/">Return to the full calculation guide</a></p>
+<p class="small">Embedding requires the host page to permit this iframe and its inline script. Only the content height is exchanged between frames. The tool page is requested from GitHub Pages; normal hosting logs may exist. No calculation inputs are sent by the height message.</p>
+</main></body></html>
