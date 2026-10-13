@@ -14,7 +14,7 @@ The following links point to the live website's existing pages:
 | Wholesale bamboo fans | [Wholesale bamboo fans](https://getfanique.com/wholesale-bamboo-fans/) |
 | OEM folding fans | [OEM folding fans in China](https://getfanique.com/oem-folding-fans-china/) |
 
-**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
+**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
 
 ## About the design comparison
 
@@ -81,3 +81,5 @@ PNG dimensions, the four file images and the metadata-to-page mapping were check
 [Resource guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/) explains the existing blank Excel/CSV worksheets and offers an all-files ZIP with an English usage guide. The three original worksheet files are unchanged. This standalone documentation page processes no enquiries, orders or payments; the original eight design/calculator HTML previews retain noindex.
 
 The resource URL list is available at https://henwanla.github.io/AnnaWeb/resources/sitemap.xml and contains only this new guide. A public IndexNow verification text file is scoped to the `AnnaWeb/resources/` directory. Notification is performed only after verifying the published page and key file; receipt does not establish indexing, ranking, search exposure or website visits. This project does not verify or submit getfanique.com production pages.
+
+The comparison portal links directly to the resource guide with a normal HTML anchor. It retains `noindex` and removes its page-wide `nofollow`; all other preview directives are unchanged. This makes the resource path available for discovery without asking search engines to index the comparison. Discovery, indexing and traffic remain separate outcomes.
