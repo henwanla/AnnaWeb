@@ -49,6 +49,10 @@
   const form=d.getElementById('brief-form'),status=d.getElementById('brief-status'),output=d.getElementById('brief-output'),text=d.getElementById('brief-text');
   const source = new URL(root.location.href);
   source.search='';source.hash='';
+  if (!['https:', 'http:'].includes(source.protocol)) {
+    const page=source.pathname.split('/').pop();
+    source.href='https://henwanla.github.io/AnnaWeb/'+(['night.html','atelier.html','pop.html','classic.html'].includes(page)?page:'');
+  }
   function refreshContacts() {
     const purpose=d.getElementById('purpose').value;
     d.querySelectorAll('[data-whatsapp="contact"]').forEach(link=>{
