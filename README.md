@@ -16,6 +16,10 @@ The following links point to the live website's existing pages:
 
 **Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Artwork calculation:** [folding hand fan image PPI calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
 
+## Versioned planning pack
+
+[Planning resources release · 2026-10-14](https://github.com/henwanla/AnnaWeb/releases/tag/planning-resources-2026-10-14) provides a fixed ZIP download of the existing blank Excel/CSV worksheets and their English usage guide. The release records its source snapshot and archive SHA-256; the pack retains its original packaging date. The resource guide and online artwork calculator remain available above.
+
 ## About the design comparison
 
 Informational website redesign prototype for reviewing the current Fanique page against a more coherent product and buyer-planning layout.
