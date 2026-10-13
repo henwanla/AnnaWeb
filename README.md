@@ -14,7 +14,7 @@ The following links point to the live website's existing pages:
 | Wholesale bamboo fans | [Wholesale bamboo fans](https://getfanique.com/wholesale-bamboo-fans/) |
 | OEM folding fans | [OEM folding fans in China](https://getfanique.com/oem-folding-fans-china/) |
 
-**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Artwork calculation:** [hand fan image PPI calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
+**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Artwork calculation:** [folding hand fan image PPI calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
 
 ## About the design comparison
 
@@ -87,6 +87,6 @@ The comparison portal links directly to the resource guide with a normal HTML an
 
 ## Artwork-resolution calculation guide
 
-[Hand fan artwork resolution calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/) reuses the existing reviewed PPI calculation without changing its fields or arithmetic. It explains that placed image dimensions differ from closed fan length and that PPI alone does not approve artwork. Illustrative defaults are not Fanique product specifications. No files or inputs are uploaded and no enquiry is sent. The optional WhatsApp link includes a fixed artwork topic and public page address, with no calculator values.
+[Folding hand fan artwork resolution calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/) reuses the existing reviewed PPI calculation without changing its fields or arithmetic. It explains that placed image dimensions differ from closed fan length and that PPI alone does not approve artwork. Illustrative defaults are not Fanique product specifications. No files or inputs are uploaded and no enquiry is sent. The optional WhatsApp link includes a fixed artwork topic and public page address, with no calculator values.
 
 This distinct documentation URL has a self-canonical, English title/description, index/follow declaration and ordinary resource-guide/README links. The eight original comparison/calculator previews retain noindex. The resource sitemap includes only the two indexable documentation pages. Static/Node calculation checks and HTTP publication checks do not establish current browser/device behavior, search indexing, ranking, traffic or business receipt.
