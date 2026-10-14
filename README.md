@@ -141,3 +141,8 @@ The hosted widget carries the same input warning in its calculation-method discl
 ## Share a specific comparison format
 
 The procurement preview has six ordinary format links, such as [LED 33cm Fan](https://henwanla.github.io/AnnaWeb/pop.html#format-led). Each link identifies and highlights a public table row and can be copied or shared with a colleague. It does not encode a selection, notes, quantities or other project entries. Existing outline and WhatsApp actions remain separate. This is a procurement-page feature; the preview stays noindex and no search-update notification is sent. Public source/link verification does not establish device scrolling, actual sharing or organic traffic.
+
+
+## Receiving checks and differences
+
+The procurement preview now asks buyers to confirm the approved reference version, receiving checks and the contact for any differences. A dedicated WhatsApp link carries that review question and the public preview address; existing JavaScript adds the visitor’s deliberately selected format and occasion. It neither sends a message automatically nor defines a refund, remake, claim deadline or defect allowance. Existing factory, sample and inspection questions remain present. Actual receiving and issue-handling terms require confirmation with Fanique. This is a page feature, with no new organic-acquisition action or update notification.
