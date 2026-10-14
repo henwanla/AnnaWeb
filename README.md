@@ -122,3 +122,10 @@ WordPress.org's current Custom HTML documentation describes `unfiltered_html` fi
 The three factory-area contacts now ask different concrete questions: event production checks and packing; artwork revision and sample scope; and supplier identity with order-specific inspection records. The static link carries the complete question and its public page address. Existing JavaScript adds a deliberately selected product and occasion while preserving the factory question.
 
 These are requests to clarify the current factory information, not claims that certificates or inspection records are available. Original factory photos, introduction, figures, sample notes and contact channels remain present. No message is sent automatically and no first-contact date is required. This is a page/contact improvement; the eight organic-discovery actions and previous search-update receipts remain unchanged.
+
+
+## Quote cost-scope worksheet
+
+[Separate blank quote-scope CSV](https://henwanla.github.io/AnnaWeb/downloads/quote-costs.csv) and the [resource guide](https://henwanla.github.io/AnnaWeb/resources/#quote-scope-heading) help record a whole-order quotation and clarify included, separate, unknown or not-applicable charges. The CSV is adapted from this project's original local blank aid: the amount column now covers the quoted total as well as stated components, and `quoted` is added for the total row. It supplies no actual prices or calculated totals. Included costs must not be added to the quoted total again, and unknown is not zero.
+
+This new CSV is a separate download; the existing project/delivery workbook, ZIP and fixed release are unchanged. Quote scope can be discussed without filling the worksheet. Its WhatsApp link carries only the question and public resource address, never completed cells. The resource page remains indexable documentation and the ten previews/helpers retain noindex. Actual download use, search indexing, referrals and received enquiries remain unmeasured.
