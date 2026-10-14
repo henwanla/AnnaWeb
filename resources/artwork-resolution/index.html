@@ -112,6 +112,8 @@
 <p class="formula">Horizontal PPI = horizontal pixels used ÷ final width in inches<br>Vertical PPI = vertical pixels used ÷ final height in inches</p>
 <p>Conversion uses 1 inch = 2.54 cm. Pixels must correspond to the actual used area. Recalculate for the actual image if cropped, rotated, stretched or used only in part.</p>
 <p>Changing resolution metadata adds no original pixels. Interpolation does not automatically create original detail. Device DPI and image PPI are different measures.</p>
+<p><strong>Match the same image area.</strong> If a frame only clips an image without resampling or changing its scale, use the retained source pixels and their final physical size together. Do not divide the full source-image pixel count by a smaller clipped frame width. Display zoom, canvas dimensions and the image area actually used are separate checks.</p>
+<p><strong>Fictional horizontal example:</strong> 1800 pixels placed across 30 cm gives 152.4 PPI. If a 20 cm portion retains 1200 of those original pixels at the same scale, it still gives 152.4 PPI. Mixing all 1800 pixels with that 20 cm portion would report 228.6 PPI and overstate the density. This assumes no resampling or change of scale; the dimensions are not a fan specification or production approval.</p>
 </details>
 <section class="panel" aria-labelledby="next-heading" style="margin-top:28px">
 <h2 id="next-heading">Keep the calculation with your artwork record</h2>
