@@ -115,3 +115,10 @@ The iframe uses an opaque-origin script sandbox and exchanges only bounded conte
 [Auto-height HTML](https://henwanla.github.io/AnnaWeb/downloads/folding-hand-fan-ppi-embed.html.txt) requires an allowed iframe and host script. [Fixed-height HTML](https://henwanla.github.io/AnnaWeb/downloads/folding-hand-fan-ppi-iframe-only.html.txt) has a direct iframe URL and no host script or parent-origin query. JavaScript still runs inside the hosted calculator; the fixed frame can scroll instead of growing. If a platform filters iframe tags, use an ordinary link to the [full guide](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/); neither format bypasses editor roles, platform plan restrictions or host security policy.
 
 WordPress.org's current Custom HTML documentation describes `unfiltered_html` filtering, including both script and iframe tags when capability is absent. WordPress.com separately restricts code by plan and activated hosting features. These are distribution conditions, not claims that the Fanique website uses either platform. Product/factory image permissions remain outside the snippet offer.
+
+
+## Factory questions carried into WhatsApp
+
+The three factory-area contacts now ask different concrete questions: event production checks and packing; artwork revision and sample scope; and supplier identity with order-specific inspection records. The static link carries the complete question and its public page address. Existing JavaScript adds a deliberately selected product and occasion while preserving the factory question.
+
+These are requests to clarify the current factory information, not claims that certificates or inspection records are available. Original factory photos, introduction, figures, sample notes and contact channels remain present. No message is sent automatically and no first-contact date is required. This is a page/contact improvement; the eight organic-discovery actions and previous search-update receipts remain unchanged.
