@@ -6,3 +6,5 @@
 .supplier-conditions .sample-scope-table{width:100%;border-collapse:collapse;margin-top:28px;font-size:12px;line-height:1.7;overflow-wrap:anywhere}.sample-scope-table caption{text-align:left;font-size:14px;font-weight:700;margin-bottom:12px}.sample-scope-table th,.sample-scope-table td{text-align:left;vertical-align:top;padding:12px 10px;border-top:1px solid #cad0d4}.sample-scope-table th:first-child{width:32%}.sample-scope-table td{color:#59606b}.sample-scope-table thead th{font-size:11px}
 
 .format-permalink{display:block;width:fit-content;margin-top:12px;font-size:11px;text-decoration:underline;text-underline-offset:3px}.desk-format:target>th,.desk-format:target>td{background:#e9f2c8}
+
+.supplier-conditions .receiving-review{grid-column:1/-1}
