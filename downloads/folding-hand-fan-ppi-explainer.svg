@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1500" viewBox="0 0 1000 1500" role="img" aria-labelledby="title desc">
+<title id="title">Same pixels, different placed size</title>
+<desc id="desc">A fictional 1800 by 1200 pixel image at 15 by 10 centimetres gives 304.8 PPI in both directions. At 30 by 20 centimetres it gives 152.4 PPI. Neither is an artwork approval threshold or a model template.</desc>
+<defs><pattern id="art" width="50" height="50" patternUnits="userSpaceOnUse"><rect width="50" height="50" fill="#d1e8df"/><path d="M0 50L50 0M-25 25L25-25M25 75L75 25" stroke="#abcfc1" stroke-width="3"/></pattern></defs>
+<rect width="1000" height="1500" fill="#f6f2e9"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#173f3b">
+<rect x="48" y="48" width="14" height="25" rx="7" fill="#e36f42"/><text x="78" y="69" font-size="22" font-weight="700" letter-spacing="2">FANIQUE / ARTWORK NOTES</text>
+<text x="48" y="180" font-size="83" font-weight="700" letter-spacing="-3">Same pixels.</text><text x="48" y="274" font-size="83" font-weight="700" letter-spacing="-3">Different size.</text>
+<text x="50" y="335" font-size="29">Larger placement lowers the effective PPI.</text>
+<rect x="48" y="374" width="904" height="66" rx="16" fill="#173f3b"/><text x="500" y="417" font-size="29" font-weight="700" fill="#ffffff" text-anchor="middle">ONE IMAGE · 1800 × 1200 pixels</text>
+<rect x="48" y="466" width="438" height="490" rx="24" fill="#ffffff"/><rect x="514" y="466" width="438" height="490" rx="24" fill="#ffffff"/>
+<text x="267" y="520" font-size="28" font-weight="700" text-anchor="middle">15 × 10 cm</text><text x="733" y="520" font-size="28" font-weight="700" text-anchor="middle">30 × 20 cm</text>
+<svg x="192" y="626" width="150" height="100" viewBox="0 0 300 200"><rect width="300" height="200" rx="5" fill="url(#art)" stroke="#173f3b" stroke-width="3"/></svg><path d="M192 746v10h150v-10" fill="none" stroke="#173f3b" stroke-width="2"/>
+<svg x="583" y="576" width="300" height="200" viewBox="0 0 300 200"><rect width="300" height="200" rx="5" fill="url(#art)" stroke="#173f3b" stroke-width="3"/></svg><path d="M583 795v10h300v-10" fill="none" stroke="#173f3b" stroke-width="2"/>
+<text x="267" y="874" font-size="61" font-weight="700" text-anchor="middle">304.8 PPI</text><text x="733" y="874" font-size="61" font-weight="700" text-anchor="middle">152.4 PPI</text>
+<text x="267" y="917" font-size="23" text-anchor="middle">Both directions</text><text x="733" y="917" font-size="23" text-anchor="middle">Both directions</text>
+<text x="50" y="1004" font-size="23">Teaching example. Not a fan model template.</text>
+<path d="M48 1039H952" stroke="#b6c9be" stroke-width="2"/>
+<text x="50" y="1095" font-size="30" font-weight="700">Before you prepare the artwork</text>
+<text x="50" y="1146" font-size="27">1. Use pixels and size for the same image area.</text><text x="50" y="1194" font-size="27">2. Calculate both width and height.</text><text x="50" y="1242" font-size="27">3. Confirm the model template and print requirements.</text>
+<text x="50" y="1290" font-size="23">PPI alone does not approve artwork.</text>
+<rect x="48" y="1330" width="904" height="83" rx="16" fill="#e36f42"/><text x="500" y="1381" font-size="30" font-weight="700" text-anchor="middle">Try the folding fan artwork calculator ↗</text>
+<text x="50" y="1451" font-size="20">henwanla.github.io/AnnaWeb/resources/artwork-resolution/</text>
+</g></svg>

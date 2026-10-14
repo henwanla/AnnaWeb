@@ -1,0 +1,26 @@
+FOLDING HAND FAN ARTWORK: PPI EXPLANATION CARD
+
+Card and method: https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/
+
+Example
+The same fictional 1800 x 1200 pixel image at 15 x 10 cm gives 304.8 PPI in both directions. At 30 x 20 cm it gives 152.4 PPI. PPI = pixels / placed size in inches. The rectangles share a scale; their sizes are examples, not actual Fanique print areas, fan dimensions, templates or artwork approval thresholds. No particular PPI target is prescribed.
+
+Use pixels and placed dimensions for the same image region. If the image has been cropped, the pixel dimensions must refer to that crop. Confirm the selected model's actual template, printable area and process requirements with the supplier.
+
+Reuse permission for these three files only
+The owner authorizes copying, sharing and adapting this original explanation card and these notes, including commercial use. A source link is welcome and optional. This permission does not license any product/factory photograph, logo, font file or other repository asset. No attribution, backlink, account, payment or completed worksheet is required to download or reuse these files. Do not describe an adapted diagram as a Fanique model specification or approval.
+
+Suggested Pinterest title
+Folding fan artwork: check pixels at the placed size
+
+Suggested description
+The same image can have a different effective PPI when placed at a different size. See a fictional example, calculate both directions, and confirm the selected fan model's template and print requirements. The calculator needs no image upload.
+
+Suggested alt text
+A fictional 1800 by 1200 pixel image gives 304.8 PPI at 15 by 10 centimetres and 152.4 PPI at 30 by 20 centimetres, in both directions. The diagrams are not a model template or an approval threshold.
+
+Destination URL
+https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/
+
+Publication status
+The card and destination are supplied publicly with the planning-resource project. This text does not mean that a Pin has been posted, the website has been claimed, a Pinterest account has been verified, the platform has accepted the content or any visits have been generated. Account eligibility, current publishing controls and actual outcomes need separate verification.
