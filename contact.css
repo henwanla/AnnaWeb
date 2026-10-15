@@ -12,3 +12,7 @@
 
 .occasion-link .scene-action{min-height:44px;padding-block:12px;margin-top:14px;line-height:1.5;text-decoration:underline;text-underline-offset:5px;overflow-wrap:anywhere}
 .occasion-link .scene-contact{display:block;font-size:12px;line-height:1.6}
+
+/* Buyer-facing contact copy in the three current design previews. */
+:is(.experience,.editorial,.procurement) .whatsapp-link,
+:is(.experience,.editorial,.procurement) .occasion-link .scene-contact{font-size:14px}
