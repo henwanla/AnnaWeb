@@ -146,3 +146,9 @@ The procurement preview has six ordinary format links, such as [LED 33cm Fan](ht
 ## Receiving checks and differences
 
 The procurement preview now asks buyers to confirm the approved reference version, receiving checks and the contact for any differences. A dedicated WhatsApp link carries that review question and the public preview address; existing JavaScript adds the visitor’s deliberately selected format and occasion. It neither sends a message automatically nor defines a refund, remake, claim deadline or defect allowance. Existing factory, sample and inspection questions remain present. Actual receiving and issue-handling terms require confirmation with Fanique. This is a page feature, with no new organic-acquisition action or update notification.
+
+## Local outline readiness and errors
+
+The four full concepts keep all named outline fields and their submit button disabled until the shared script has installed its submission prevention and event handlers. If JavaScript is unavailable or initialization fails, an English explanation stays visible and the existing direct WhatsApp links remain available. The optional outline cannot be completed through its ordinary controls in that state.
+
+Once ready, the outline validates the existing product and whole-number rules in English, focuses the field that needs attention and connects it to the error text. Native number-input bad-input states are checked explicitly. A valid outline is still prepared locally; opening WhatsApp lets the visitor review and send it. Code and static fallback checks do not establish browser rendering, actual sending or business receipt.

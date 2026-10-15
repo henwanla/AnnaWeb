@@ -15,17 +15,20 @@
   function whatsappUrl(message) {
     return 'https://wa.me/' + whatsappNumber + '?text=' + encodeURIComponent(message);
   }
-  function wholeNumber(value, name) {
+  function briefError(message, field) {
+    return Object.assign(new Error(message), {field});
+  }
+  function wholeNumber(value, name, field) {
     const s = String(value ?? '').trim();
     if (!s) return {text:'To confirm', value:null};
-    if (!/^\d+$/.test(s) || !Number.isSafeInteger(Number(s)) || Number(s) < 1) throw new Error(name + ' must be a positive whole number.');
+    if (!/^\d+$/.test(s) || !Number.isSafeInteger(Number(s)) || Number(s) < 1) throw briefError(name + ' must be a positive whole number.', field);
     return {text:String(Number(s)), value:Number(s)};
   }
   function buildBrief(data) {
-    if (!Object.hasOwn(products,data.model)) throw new Error('Choose a product format first.');
-    const qty=wholeNumber(data.quantity,'Total quantity');
-    const designs=wholeNumber(data.designs,'Number of designs');
-    if (qty.value !== null && designs.value !== null && designs.value > qty.value) throw new Error('The number of designs cannot exceed the number of fans.');
+    if (!Object.hasOwn(products,data.model)) throw briefError('Choose a product format first.', 'model');
+    const qty=wholeNumber(data.quantity,'Total quantity', 'quantity');
+    const designs=wholeNumber(data.designs,'Number of designs', 'designs');
+    if (qty.value !== null && designs.value !== null && designs.value > qty.value) throw briefError('The number of designs cannot exceed the number of fans.', 'designs');
     const notes=String(data.notes || '').trim().slice(0,2000);
     return ['FANIQUE — PROJECT OUTLINE','Product format: '+products[data.model],'Total quantity: '+qty.text,'Number of designs: '+designs.text,'Quantity per design: To confirm separately','Intended use: '+(String(data.purpose || '').trim() || 'To confirm'),'Details and questions: '+(notes || 'To confirm'),'','Still to confirm: actual model/specifications; customisation area and sides; minimum per design; artwork/sample approval; packing; receiving point; included and separate costs; production and transport conditions.','','Prepared locally in a design preview. No enquiry has been sent and no order has been placed.'].join('\n');
   }
@@ -63,9 +66,30 @@
       link.href=whatsappUrl(contactMessage({model:link.dataset.waProduct || model.value,purpose:link.dataset.waPurpose || purpose,topic:link.dataset.waTopic},source.href));
     });
   }
-  function invalidate(){output.hidden=true;text.value='';status.textContent='';refreshContacts();}
+  function clearBriefErrors() {
+    ['model','quantity','designs','purpose','notes'].forEach(id=>{
+      const field=d.getElementById(id);
+      field.removeAttribute('aria-invalid');
+      const descriptions=(field.getAttribute('aria-describedby') || '').split(/\s+/).filter(id=>id && id!=='brief-status');
+      if(descriptions.length) field.setAttribute('aria-describedby',descriptions.join(' '));
+      else field.removeAttribute('aria-describedby');
+    });
+  }
+  function readBriefData() {
+    for (const [id, name] of [['quantity','Total quantity'],['designs','Number of designs']]) {
+      const field=d.getElementById(id);
+      if(field.validity.badInput) throw briefError(name + ' must be a positive whole number.',id);
+    }
+    return Object.fromEntries(new root.FormData(form).entries());
+  }
+  function invalidate(){output.hidden=true;text.value='';status.textContent='';clearBriefErrors();refreshContacts();}
   refreshContacts();
   form.addEventListener('input',invalidate);form.addEventListener('change',invalidate);
-  form.addEventListener('submit',e=>{e.preventDefault();try{const data=Object.fromEntries(new root.FormData(form).entries());text.value=buildBrief(data);d.getElementById('whatsapp-brief').href=whatsappUrl(text.value+'\nPage: '+source.href);output.hidden=false;status.textContent='Outline ready. Copy it or open it in WhatsApp to review and send.';}catch(err){output.hidden=true;text.value='';status.textContent=err.message;}});
+  form.addEventListener('submit',e=>{e.preventDefault();clearBriefErrors();try{text.value=buildBrief(readBriefData());d.getElementById('whatsapp-brief').href=whatsappUrl(text.value+'\nPage: '+source.href);output.hidden=false;status.textContent='Outline ready. Copy it or open it in WhatsApp to review and send.';}catch(err){output.hidden=true;text.value='';status.textContent=err.message;const field=err.field && d.getElementById(err.field);if(field){field.setAttribute('aria-invalid','true');const descriptions=(field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);field.setAttribute('aria-describedby',[...new Set([...descriptions,'brief-status'])].join(' '));field.focus();}}});
   d.getElementById('copy-brief').addEventListener('click',async()=>{if(output.hidden || !text.value)return;try{await root.navigator.clipboard.writeText(text.value);status.textContent='Outline copied. No enquiry has been sent.';}catch{ text.focus();text.select();status.textContent='Select the outline and copy it using your device’s copy command.'; }});
+  // Enable local-only inputs only after submission prevention and all handlers exist.
+  form.querySelectorAll('[data-brief-control]').forEach(control=>{control.disabled=false;});
+  form.dataset.briefReady='true';
+  form.removeAttribute('aria-describedby');
+  d.getElementById('brief-readiness').hidden=true;
 })(typeof window !== 'undefined' ? window : globalThis);
