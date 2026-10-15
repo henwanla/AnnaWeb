@@ -70,30 +70,29 @@
   const unitFactors = {cm:2.54,mm:25.4,in:1};
   const format = n => n > 0 && n < .1 ? n.toExponential(2) : n.toLocaleString('en-US', {maximumFractionDigits:1});
   const dimensionFormat = n => n > 0 && n < .001 ? n.toExponential(2) : n.toLocaleString('en-US', {maximumFractionDigits:3});
+  function invalidResult(message, note) {
+    get('error').textContent = message;
+    get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
+    get('dimensions').textContent = 'Awaiting valid input'; get('ratio').textContent = '';
+    get('print-box').style.aspectRatio = '';
+    get('target-result').textContent = note;
+  }
   function calculate() {
     const px = Number(get('pixels-x').value), py = Number(get('pixels-y').value);
     const w = Number(get('print-width').value), h = Number(get('print-height').value);
     const u = get('unit').value, targetRaw = get('target').value.trim();
     const target = targetRaw === '' ? null : Number(targetRaw);
     if (![px,py,w,h].every(n => Number.isFinite(n) && n > 0) || !Number.isInteger(px) || !Number.isInteger(py)) {
-      get('error').textContent = 'Pixels must be positive integers; width and height must be finite values greater than zero.';
-      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
-      get('dimensions').textContent = 'Awaiting valid input'; get('ratio').textContent = '';
-      get('target-result').textContent = 'Enter valid values to calculate.'; return;
+      invalidResult('Pixels must be positive integers; width and height must be finite values greater than zero.', 'Enter valid values to calculate.'); return;
     }
-    if (target !== null && (!Number.isFinite(target) || target <= 0)) {
-      get('error').textContent = 'An agreed target must be finite and greater than zero, or left blank.';
-      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
-      get('dimensions').textContent = 'Awaiting valid input'; get('ratio').textContent = '';
-      get('target-result').textContent = 'Invalid target; required pixels have not been estimated.'; return;
+    if (get('target').validity.badInput || (target !== null && (!Number.isFinite(target) || target <= 0))) {
+      invalidResult('An agreed target must be finite and greater than zero, or left blank.', 'Invalid target; required pixels have not been estimated.'); return;
     }
     get('error').textContent = '';
     const widthInches = w / unitFactors[u], heightInches = h / unitFactors[u];
     const ppiX = px / widthInches, ppiY = py / heightInches;
     if (![widthInches,heightInches,ppiX,ppiY].every(n => Number.isFinite(n) && n > 0)) {
-      get('error').textContent = 'Values are outside the calculable range; use the actual dimensions.';
-      get('ppi-x').textContent = '—'; get('ppi-y').textContent = '—';
-      get('target-result').textContent = 'Required pixels have not been estimated.'; return;
+      invalidResult('Values are outside the calculable range; use the actual dimensions.', 'Required pixels have not been estimated.'); return;
     }
     get('ppi-x').textContent = format(ppiX); get('ppi-y').textContent = format(ppiY);
     get('dimensions').textContent = `${dimensionFormat(w)} × ${dimensionFormat(h)} ${u}`;
