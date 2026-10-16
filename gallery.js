@@ -33,14 +33,17 @@
   function showScene(index,update=false){
     sceneActive=(index+scenes.length)%scenes.length;
     scenes.forEach((n,i)=>{n.hidden=i!==sceneActive;});
-    sceneLinks.forEach((a,i)=>{if(i===sceneActive)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
+    sceneLinks.forEach((a)=>{if(a.dataset.sceneLink===scenes[sceneActive].id.slice(6))a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
     if(room==='occasions')setViewed(scenes[sceneActive].dataset.context,scenes[sceneActive].id);
     if(update)setHash('occasion-'+scenes[sceneActive].id.slice(6));
   }
-  sceneLinks.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault();showScene(i,true);}));
-  d.querySelector('.scene-selector').addEventListener('keydown',e=>{
-    if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();
-    showScene(e.key==='Home'?0:e.key==='End'?scenes.length-1:sceneActive+(e.key==='ArrowRight'?1:-1),true);sceneLinks[sceneActive].focus({preventScroll:true});
+  sceneLinks.forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();const index=scenes.findIndex(n=>n.id==='scene-'+a.dataset.sceneLink);showScene(index);setHash(scenes[index].id);openStory(scenes[index],a);
+  }));
+  d.getElementById('occasions').addEventListener('keydown',e=>{
+    const current=e.target.closest('[data-scene-link]');if(!current || !['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();
+    const index=sceneLinks.indexOf(current),next=e.key==='Home'?0:e.key==='End'?sceneLinks.length-1:(index+(e.key==='ArrowRight'?1:-1)+sceneLinks.length)%sceneLinks.length;
+    sceneLinks[next].focus({preventScroll:true});sceneLinks[next].scrollIntoView({block:'nearest',inline:'nearest',behavior:'auto'});
   });
   function closeStory(){if(dialog.open)dialog.close();}
   function restoreContent(){
@@ -109,7 +112,7 @@
       showRoom(parentRoom?parentRoom.id:'fans');
       if(slide)showFan(slides.indexOf(slide),false,false);
       if(details.matches('.scene-exhibit'))showScene(scenes.indexOf(details));
-      openStory(details,details.querySelector(':scope > summary'));return;
+      openStory(details,details.matches('.scene-exhibit')?d.querySelector('[data-scene-link="'+details.id.slice(6)+'"]'):details.querySelector(':scope > summary'));return;
     }
     // A history navigation must not leave an unrelated explanation above its room.
     closeStory();
@@ -118,6 +121,6 @@
     else if(['fans','occasions','making'].includes(key))showRoom(key);
     else showRoom('fans');
   }
-  d.querySelector('.fan-controls').hidden=false;d.body.classList.add('gallery-ready');showFan(0,false,false);showScene(0);restore();
+  d.querySelector('.scene-wall').hidden=true;d.querySelector('.fan-controls').hidden=false;d.body.classList.add('gallery-ready');showFan(0,false,false);showScene(0);restore();
   root.addEventListener('hashchange',restore);root.addEventListener('popstate',restore);
 })(typeof window!=='undefined'?window:globalThis);
