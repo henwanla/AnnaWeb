@@ -5,16 +5,19 @@
   const dialog=d.getElementById('gallery-dialog'),slot=dialog.querySelector('.dialog-content'),close=dialog.querySelector('.dialog-close');
   if(typeof dialog.showModal!=='function')return;
   const page=new URL(root.location.href);page.hash='';page.search='';
-  let active=0,room='fans',story=null,opener=null,viewed='Fanique visual gallery';
+  let active=0,room='fans',story=null,opener=null,viewed='Fanique visual gallery',viewedURL=page.href;
   function isAvailable(node){return node && node.isConnected && !node.closest('[hidden]');}
   function updateContact(){
-    d.querySelectorAll('[data-gallery-contact="live"]').forEach(link=>{link.href='https://wa.me/8613205010910?'+new URLSearchParams({text:'Hello Fanique, I have a question.\nViewing: '+viewed+'\nPage: '+page.href});});
+    d.querySelectorAll('[data-gallery-contact="live"]').forEach(link=>{link.href='https://wa.me/8613205010910?'+new URLSearchParams({text:'Hello Fanique, I have a question.\nViewing: '+viewed+'\nPage: '+viewedURL});});
+  }
+  function setViewed(label,key){
+    viewed=label;const url=new URL(page.href);url.hash=key;viewedURL=url.href;updateContact();
   }
   function setHash(hash,replace=true){const url=new URL(root.location.href);url.hash=hash;if(url.href!==root.location.href)root.history[replace?'replaceState':'pushState'](null,'',url);}
   function showRoom(id,update=false){
     room=rooms.some(n=>n.id===id)?id:'fans';rooms.forEach(n=>{n.hidden=n.id!==room;});
     d.querySelectorAll('[data-room-link]').forEach(a=>{if(a.dataset.roomLink===room)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-    viewed=room==='fans'?slides[active].dataset.context:room==='occasions'?'Occasion images':'Published making images';updateContact();if(update)setHash(room,false);
+    setViewed(room==='fans'?slides[active].dataset.context:room==='occasions'?'Occasion images':'Published making images',room==='fans'?slides[active].id:room);if(update)setHash(room,false);
   }
   function showFan(index,update=true,animate=true){
     active=(index+slides.length)%slides.length;
@@ -22,7 +25,7 @@
     thumbs.forEach((a,i)=>{if(i===active)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});
     if(animate)slides[active].classList.add('is-turning');
     d.getElementById('fan-position').textContent=(active+1)+' / '+slides.length;
-    if(room==='fans'){viewed=slides[active].dataset.context;updateContact();}
+    if(room==='fans')setViewed(slides[active].dataset.context,slides[active].id);
     if(update)setHash('fan-'+slides[active].dataset.fanSlide);
   }
   function closeStory(){if(dialog.open)dialog.close();}
@@ -44,8 +47,13 @@
     story=details;opener=trigger;const content=details.querySelector(':scope > .story-content');
     if(details.id==='email'){
       content.querySelector('[name="viewed_item"]').value=viewed;
+      content.querySelector('[name="source_page"]').value=viewedURL;
       content.querySelector('.enquiry-context').textContent='Viewing: '+viewed+'. You can ask a question without choosing a format or quantity.';
-    }else if(details.dataset.context){viewed=details.dataset.context;updateContact();}
+    }else{
+      const slide=details.closest('[data-fan-slide]');
+      const context=details.dataset.context || (slide && slide.dataset.context);
+      if(context)setViewed(context,slide?slide.id:details.id);
+    }
     slot.appendChild(content);d.getElementById('gallery-dialog-title').textContent=details.id==='email'?'Email a question':'Image details';
     d.body.classList.add('modal-open');if(!dialog.open)dialog.showModal();
     const heading=content.querySelector('h2');if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}
@@ -77,8 +85,20 @@
   d.querySelectorAll('[data-room-link]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showRoom(a.dataset.roomLink,true);}));
   function restore(){
     const key=root.location.hash.slice(1),fan=slides.findIndex(n=>n.id===key);
-    if(fan>=0){showRoom('fans');showFan(fan,false,false);}else if(['fans','occasions','making'].includes(key)){showRoom(key);}
-    else if(key==='email' || key==='gallery-email'){showRoom('fans');openStory(d.getElementById('email'),d.querySelector('.dock-email'));}
+    if(key==='email' || key==='gallery-email'){
+      showRoom('fans');openStory(d.getElementById('email'),d.querySelector('.dock-email'));return;
+    }
+    const details=d.getElementById(key);
+    if(details && details.matches('.exhibit') && details.id!=='email'){
+      const parentRoom=details.closest('[data-gallery-room]'),slide=details.closest('[data-fan-slide]');
+      showRoom(parentRoom?parentRoom.id:'fans');
+      if(slide)showFan(slides.indexOf(slide),false,false);
+      openStory(details,details.querySelector(':scope > summary'));return;
+    }
+    // A history navigation must not leave an unrelated explanation above its room.
+    closeStory();
+    if(fan>=0){showRoom('fans');showFan(fan,false,false);}
+    else if(['fans','occasions','making'].includes(key))showRoom(key);
     else showRoom('fans');
   }
   d.querySelector('.fan-controls').hidden=false;d.body.classList.add('gallery-ready');showFan(0,false,false);restore();
