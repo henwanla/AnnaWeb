@@ -30,7 +30,7 @@
     const designs=wholeNumber(data.designs,'Number of designs', 'designs');
     if (qty.value !== null && designs.value !== null && designs.value > qty.value) throw briefError('The number of designs cannot exceed the number of fans.', 'designs');
     const notes=String(data.notes || '').trim().slice(0,2000);
-    return ['FANIQUE — PROJECT OUTLINE','Product format: '+products[data.model],'Total quantity: '+qty.text,'Number of designs: '+designs.text,'Quantity per design: To confirm separately','Intended use: '+(String(data.purpose || '').trim() || 'To confirm'),'Details and questions: '+(notes || 'To confirm'),'','Still to confirm: actual model/specifications; customisation area and sides; minimum per design; artwork/sample approval; packing; receiving point; included and separate costs; production and transport conditions.','','Prepared locally in a design preview. No enquiry has been sent and no order has been placed.'].join('\n');
+    return ['FANIQUE — PROJECT OUTLINE','Product format: '+products[data.model],'Total quantity: '+qty.text,'Number of designs: '+designs.text,'Quantity per design: To confirm separately','Intended use: '+(String(data.purpose || '').trim() || 'To confirm'),'Details and questions: '+(notes || 'To confirm'),'','Still to confirm: actual model/specifications; customisation area and sides; minimum per design; artwork/sample approval; packing; receiving point; included and separate costs; production and transport conditions.','','This outline was prepared locally. Creating it does not send an enquiry or place an order.'].join('\n');
   }
   const api={buildBrief,wholeNumber,products,contactMessage,whatsappUrl,whatsappNumber};
   if (typeof module !== 'undefined' && module.exports) module.exports=api;
@@ -86,7 +86,7 @@
   refreshContacts();
   form.addEventListener('input',invalidate);form.addEventListener('change',invalidate);
   form.addEventListener('submit',e=>{e.preventDefault();clearBriefErrors();try{text.value=buildBrief(readBriefData());d.getElementById('whatsapp-brief').href=whatsappUrl(text.value+'\nPage: '+source.href);output.hidden=false;status.textContent='Outline ready. Copy it or open it in WhatsApp to review and send.';}catch(err){output.hidden=true;text.value='';status.textContent=err.message;const field=err.field && d.getElementById(err.field);if(field){field.setAttribute('aria-invalid','true');const descriptions=(field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);field.setAttribute('aria-describedby',[...new Set([...descriptions,'brief-status'])].join(' '));field.focus();}}});
-  d.getElementById('copy-brief').addEventListener('click',async()=>{if(output.hidden || !text.value)return;try{await root.navigator.clipboard.writeText(text.value);status.textContent='Outline copied. No enquiry has been sent.';}catch{ text.focus();text.select();status.textContent='Select the outline and copy it using your device’s copy command.'; }});
+  d.getElementById('copy-brief').addEventListener('click',async()=>{if(output.hidden || !text.value)return;try{await root.navigator.clipboard.writeText(text.value);status.textContent='Outline copied. Copying does not send an enquiry.';}catch{ text.focus();text.select();status.textContent='Select the outline and copy it using your device’s copy command.'; }});
   // Enable local-only inputs only after submission prevention and all handlers exist.
   form.querySelectorAll('[data-brief-control]').forEach(control=>{control.disabled=false;});
   form.dataset.briefReady='true';

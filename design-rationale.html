@@ -1,0 +1,24 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Fanique｜三种布局的设计依据与自检</title><link rel="icon" href="assets/mark.svg" type="image/svg+xml"><style>*{box-sizing:border-box}body{margin:0;color:#24302c;background:#f8faf8;font:16px/1.8 Arial,"PingFang SC",sans-serif}main{max-width:1050px;margin:auto;padding:40px 6% 70px}h1{font-size:clamp(32px,4vw,52px);line-height:1.2;letter-spacing:-.04em}h2{font-size:27px;margin-top:48px}h3{font-size:21px}p{max-width:75ch}a{color:#185341;text-underline-offset:4px}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:16px 12px;border-bottom:1px solid #cbd7cf;text-align:left;vertical-align:top}th{background:#e9f0eb}details{border-bottom:1px solid #cbd7cf;padding:18px 0}summary{cursor:pointer;min-height:44px;font-weight:600}.note{padding:20px;background:#e9f0eb;border-radius:5px;font-size:15px}a:focus-visible,summary:focus-visible{outline:3px solid #a34b15;outline-offset:5px}.overflow{overflow-x:auto}nav{display:flex;gap:22px;flex-wrap:wrap}@media(max-width:600px){td,th{padding:12px 8px}table{min-width:570px}h2{font-size:24px}}</style></head><body><main><nav><a href="index.html">回到三版比较</a><a href="night.html">活动现场</a><a href="atelier.html">品牌工作室</a><a href="pop.html">采购工作台</a></nav>
+<h1>先改变浏览路径，<br>再谈风格。</h1><p>旧三版的局部样式不同，但主顺序仍相同：首屏、场景、产品、工厂、表单。这能解释为什么它们依然让人觉得像同一套模板。本轮从入口、空间结构与任务组织重做。</p>
+<h2>三种设计分别解决什么问题</h2><div class="overflow" role="region" tabindex="0" aria-label="三版设计依据比较"><table><thead><tr><th>方案</th><th>主要选择与依据</th><th>代价和边界</th></tr></thead><tbody>
+<tr><th>活动现场</th><td>从用途认同进入，以可切换的当前场景连接扇型、制作与联系。影像舞台减少六张同构卡片的连续堆叠。</td><td>仍有普通纵向阅读；浏览场景不等于选择了询价用途。</td></tr>
+<tr><th>品牌工作室</th><td>以物件作为视觉主角，章节导航让访客直接访问产品、用途、制作或联系。大图与短文采用非对称构图。</td><td>分章会降低其它内容的即时可见性；要用具体导航、当前位置和可分享地址弥补。</td></tr>
+<tr><th>采购工作台</th><td>先进入型号目录，再用固定位置的属性和全型号对照支持比较。工厂、用途和邮箱作为独立工作区。</td><td>桌面信息较密；手机改为上下浏览。查看型号与明确加入询价是两个动作。</td></tr>
+</tbody></table></div>
+<h2>借鉴的是营销职能</h2>
+<p><a href="https://packhelp.com/">Packhelp</a>在已保存的公开首页里提供产品、brief、样品、编辑器与专家入口；<a href="https://daftboy.com/">Daftboy</a>区分用途和单件、批量需求。由此借鉴的是按任务和准备程度分路，不是移植它们的零售工具、布局或供货政策。</p>
+<p><a href="https://luxopack.com/">Luxopack</a>把工厂、企业资料、核验与联系放入清楚的采购大纲。因此，Fanique的工厂原图、原介绍和联系渠道必须保留；客户案例与认证仍需真实资料，不能用虚构内容补齐。</p>
+<p>这些竞品结论来自10月12日至14日保存的公开材料，本轮复核了原件与来源卡的哈希。它们支持任务分路的思考，并不能证明竞品采用了本轮的分屏或章节布局，也没有证明我方的转化会提升。</p>
+<h2>设计与交互准则</h2>
+<p><a href="https://github.com/anthropics/skills/tree/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f/skills/frontend-design">Anthropic frontend-design</a>用于先定主题、颜色、字形与构图，再反查模板化痕迹；<a href="https://github.com/vercel-labs/agent-skills/tree/ba46938889d4e58635362fb8f618e1178ac3ec46/skills/web-design-guidelines">Vercel web-design-guidelines</a>用于语义、导航、键盘、焦点、表单及响应式检查。</p>
+<p><a href="https://www.nngroup.com/articles/cards-component/">NNGroup的卡片研究</a>区分灵感浏览与比较任务，支持画册和采购采用不同呈现；<a href="https://www.nngroup.com/articles/information-scent/">Information Scent</a>提醒链接要清楚说明目的地，尤其不能靠手机上未必可见的上下文。这里采用渐进披露，是为了减少第一眼的负担；基本产品信息、工厂与联系不应被删除。</p>
+<h2>用 grill-me 继续质疑设计</h2>
+<p>按用户此前的自主推进要求，本轮采用自问、事实取证、修订的形式。以下是实际处理的关键分支，不是虚构的用户问答。</p>
+<details open><summary>去掉配色后，三版还不同吗？</summary><p>是：活动版为场景主线，工作室为章节导航，采购版为目录与详情。源码和回调检查验证这些机制不同；真实视觉感受仍待实际浏览。</p></details>
+<details><summary>少滚动是否就一定更好？</summary><p>不是。活动版保留普通滚动；其它两版的分区必须有具体命名、当前位置、直达链接、返回恢复和无脚本完整文档。没有滚动劫持或自动轮播。</p></details>
+<details><summary>选场景、看型号，会不会擅自改变询价？</summary><p>仅浏览不改变询价选择；明确进入格式或加入询价后才同步。邮箱中的型号仍可修改，WhatsApp继续带着正确型号、用途和来源。</p></details>
+<details><summary>是否又丢掉了邮箱或工厂？</summary><p>三版都保留六产品、六场景、两原工厂图与原介绍，55个原WhatsApp入口保留。邮箱恢复同一Formspree转发路径、原有字段名和原生POST；数量可在初询时留空，不额外要求日期。</p></details>
+<details><summary>提交成功是否等于业务邮箱收到？</summary><p>不是。页面只在服务明确接收时显示“已提交”；失败、不确定和超时保留输入，不自动连发。真实服务接收、邮件通知和业务收件仍需分别核实。</p></details>
+<details><summary>自检实际找到了什么问题？</summary><p>复核发现采购页在Custom筛选后打开库存型号链接，会被筛选恢复逻辑覆盖成另一个型号。已修复，并补上回归检查；移动导航的CSS优先级、隐藏视图后的焦点与暗色背景的焦点颜色也已调整。</p></details>
+<h2>当前验证范围</h2><div class="note">已用真实HTML和实际脚本在内存DOM中检查导航、历史、用途、型号、联系上下文与模拟表单状态。未启动浏览器或操作电脑界面；没有真实提交询价，没有业务收件证据，也没有实际设备视觉验收或自然增长证明。设计预览继续noindex，不改变正式站。</div>
+</main></body></html>
