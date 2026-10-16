@@ -14,13 +14,19 @@ The following links point to the live website's existing pages:
 | Wholesale bamboo fans | [Wholesale bamboo fans](https://getfanique.com/wholesale-bamboo-fans/) |
 | OEM folding fans | [OEM folding fans in China](https://getfanique.com/oem-folding-fans-china/) |
 
-**Design comparison:** [three full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Artwork calculation:** [folding hand fan image PPI calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
+**Design comparison:** [four full page concepts](https://henwanla.github.io/AnnaWeb/). **Planning resources:** [English guide and free downloads](https://henwanla.github.io/AnnaWeb/resources/). **Artwork calculation:** [folding hand fan image PPI calculator](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/). **Optional planning file:** [procurement worksheets (Excel)](https://henwanla.github.io/AnnaWeb/downloads/fanique-procurement-worksheets.xlsx). The workbook is a blank planning aid; actual materials, availability, quantities and delivery conditions require confirmation with Fanique.
 
 ## Versioned planning pack
 
 [Planning resources release · 2026-10-14](https://github.com/henwanla/AnnaWeb/releases/tag/planning-resources-2026-10-14) provides a fixed ZIP download of the existing blank Excel/CSV worksheets and their English usage guide. The release records its source snapshot and archive SHA-256; the pack retains its original packaging date. The resource guide and online artwork calculator remain available above.
 
-## Current layout and email revision
+## Fourth concept: image-led fan atlas
+
+[Open the fourth concept](https://henwanla.github.io/AnnaWeb/gallery.html) · [Behavioural rationale and limits](https://henwanla.github.io/AnnaWeb/gallery-rationale.html). The previous three concepts remain byte-for-byte unchanged in this revision. The new atlas presents six fan formats, six occasion illustrations and both original factory images; explanations and original introductions open on demand. Fan-shaped masks and thumbnails support manual browsing, with buttons/keyboard alternatives to swiping and reduced-motion support.
+
+A fixed WhatsApp / Email dock keeps contact visible. WhatsApp prefills a short question with viewing context; the visitor reviews and sends it. The email form requires only email and question, reusing the existing Formspree action; name, company, WhatsApp and quantity are optional behind a disclosure. No inquiry or message is sent automatically, and no real test enquiry has been sent. The prototype retains noindex and is separate from production. Source and memory-DOM checks do not prove native visual quality, business receipt or traffic growth.
+
+## Previous three-layout and email revision
 
 The [comparison portal](https://henwanla.github.io/AnnaWeb/) now separates a scene-led campaign, a chapter-based studio and a catalogue workbench. [Design rationale and grill-me self-review](https://henwanla.github.io/AnnaWeb/design-rationale.html) explains the task assumptions, cited design skills, competitor evidence and tradeoffs. Studio chapters and workbench formats have direct hash URLs; JavaScript-off documents keep all business content readable.
 
