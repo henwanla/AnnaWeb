@@ -1,6 +1,6 @@
 # Fanique design comparison and planning resources
 
-Four alternative page designs and optional procurement resources for Fanique. These previews are separate from the live website; they do not replace getfanique.com.
+Six alternative page designs and optional procurement resources for Fanique. These previews are separate from the live website; they do not replace getfanique.com.
 
 ## Official Fanique website
 
@@ -16,7 +16,7 @@ Visit the **[Fanique official website](https://getfanique.com/)** for the curren
 
 ## Compare the page designs
 
-[Open the comparison portal](https://henwanla.github.io/AnnaWeb/). The four concepts offer different ways to browse, rather than four color schemes on the same page order.
+[Open the comparison portal](https://henwanla.github.io/AnnaWeb/). The six concepts offer different ways to browse, with different information structures and interactions.
 
 | Concept | Browsing approach |
 | --- | --- |
@@ -24,8 +24,18 @@ Visit the **[Fanique official website](https://getfanique.com/)** for the curren
 | [Atelier](https://henwanla.github.io/AnnaWeb/atelier.html) | Browse five separately navigable chapters, with direct chapter links and return paths. |
 | [Pop](https://henwanla.github.io/AnnaWeb/pop.html) | Start with a catalogue and current-format detail; switch workspaces, filter or compare formats. A [specific LED format](https://henwanla.github.io/AnnaWeb/pop.html#format-led) can be shared. |
 | [Gallery: fourth concept](https://henwanla.github.io/AnnaWeb/gallery.html) | Look at fan formats, occasions and making images; open explanations when needed. |
+| [Signature: fifth concept](https://henwanla.github.io/AnnaWeb/signature.html) | Richpack-inspired green/white customization narrative: formats, personalization, occasions, factory, FAQ and short enquiry. |
+| [Showroom: sixth concept](https://henwanla.github.io/AnnaWeb/showroom.html) | Fanxi-inspired black masthead, large product stages, unequal series, horizontal format shelf and asymmetric occasion mosaic. |
 
 The [earlier full design](https://henwanla.github.io/AnnaWeb/classic.html) remains available. Read the [three-layout rationale and grill-me self-review](https://henwanla.github.io/AnnaWeb/design-rationale.html) or the [fourth-concept rationale and limits](https://henwanla.github.io/AnnaWeb/gallery-rationale.html).
+
+### Fifth and sixth concepts
+
+The [reference and design rationale](https://henwanla.github.io/AnnaWeb/reference-rationale.html) documents the observed Richpack and Fanxi design principles, distinct page structures, marketing hypotheses and grill-me self-review. Competitor photos, copy, customers and credentials are not reused. Both concepts use existing Fanique assets and preserve the original six formats and six occasion directions, company and supply notes, and two factory images. Stock occasion photographs are mood references, not completed customer projects.
+
+Both add fixed Email / WhatsApp contact, retain the original Formspree POST route, and require only email and question. Product email actions add a visible optional topic; input is not overwritten. WhatsApp uses fixed product/scene topics and the matching public page address, never form drafts or visitor query parameters. Native disclosures work without JavaScript; direct format links open the relevant details when the enhancement loads.
+
+Local validation covers saved HTML/CSS, asset dimensions, paths, original-content preservation and in-memory interactions. The single-use UI permission covered viewing Fanxi only; actual new-page browser rendering, mobile behavior and real business receipt have not been verified. Old four concept files and shared enquiry behavior are retained unchanged.
 
 ### Current fourth concept
 
@@ -41,7 +51,7 @@ The concepts preserve the six published fan formats, original company and factor
 
 The existing WhatsApp number and original Formspree action/POST method remain. Direct WhatsApp links let visitors start with one question, with format, occasion or factory topic and the corresponding public page address. Viewing an object does not confirm an order selection. The message is reviewed and sent by the visitor; nothing is sent automatically.
 
-Night, Atelier and Pop retain direct contacts and an optional local outline. Gallery keeps a fixed WhatsApp / Email dock. The email form requires only email and question; name, company, WhatsApp and quantity are optional. Original field names are retained, with English labels and no date/time requirement for first contact. Pending, error and uncertain-receipt states preserve drafts; unavailable scripts retain ordinary document/contact fallbacks. Gallery's contact context excludes URL queries and privately entered drafts from WhatsApp. An optional outline in the earlier concepts shares only what the visitor deliberately prepares and opens.
+Night, Atelier and Pop retain direct contacts and an optional local outline. Gallery, Signature and Showroom keep a fixed WhatsApp / Email dock. The email form requires only email and question; name, company, WhatsApp and quantity are optional. Original field names are retained, with English labels and no date/time requirement for first contact. Pending, error and uncertain-receipt states preserve drafts; unavailable scripts retain ordinary document/contact fallbacks. Gallery's contact context excludes URL queries and privately entered drafts from WhatsApp. An optional outline in the earlier concepts shares only what the visitor deliberately prepares and opens.
 
 Making contacts ask about production, artwork/sample scope or supplier/inspection records. Samples explain what is being approved; the procurement concept includes receiving-check and difference questions. These are topics to confirm, not new inspection certificates, refund/remake terms or delivery promises. No real test enquiry has been sent. A service success response does not establish email notification, business receipt or a qualified lead.
 
@@ -74,7 +84,7 @@ Earlier source, memory-DOM and direct public-file checks record the revision the
 
 ## Repository entry files
 
-`index.html` is the Chinese comparison portal. `night.html`, `atelier.html`, `pop.html` and `gallery.html` are the four English concepts; `classic.html` preserves the earlier design. `design-rationale.html` and `gallery-rationale.html` explain design decisions; `comparison.html` retains earlier context. `resources/` holds the public planning documentation. `assets/` retains the original SVG mark, PNG/ICO icons, product/factory images and share illustrations. Portal thumbnails are compositions, not browser screenshots.
+`index.html` is the Chinese comparison portal. `night.html`, `atelier.html`, `pop.html`, `gallery.html`, `signature.html` and `showroom.html` are the six English concepts; `classic.html` preserves the earlier design. `design-rationale.html`, `gallery-rationale.html` and `reference-rationale.html` explain design decisions; `comparison.html` retains earlier context. `resources/` holds the public planning documentation. `assets/` retains the original SVG mark, PNG/ICO icons, product/factory images and share illustrations. Portal thumbnails are compositions, not browser screenshots.
 
 Published Pages address: https://henwanla.github.io/AnnaWeb/
 
