@@ -6,7 +6,9 @@
     try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
     const target = document.getElementById(id);
     if (!target) return;
-    const detail = target.matches('details') ? target : target.querySelector('details');
+    // A section link must not choose an unrelated product or optional form fields.
+    const directDetails = [...target.children].filter(child => child.matches('details'));
+    const detail = target.matches('details') ? target : directDetails.length === 1 ? directDetails[0] : null;
     if (!detail) return;
     detail.open = true;
     let parent = detail.parentElement;
