@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.000
+One image. Different placed sizes. A fictional folding hand fan artwork example.
+
+2
+00:00:06.000 --> 00:00:13.000
+1800 by 1200 pixels at 15 by 10 centimetres gives 304.8 PPI in both directions.
+
+3
+00:00:13.000 --> 00:00:20.000
+The same 1800 by 1200 pixels at 30 by 20 centimetres gives 152.4 PPI in both directions.
+
+4
+00:00:20.000 --> 00:00:27.000
+Double the placed width and height, without adding pixels: PPI halves in both directions.
+
+5
+00:00:27.000 --> 00:00:35.000
+PPI is not artwork approval. Match the image area, then confirm the model, template, print requirements and sample.
+
+6
+00:00:35.000 --> 00:00:44.000
+Use the calculator for your actual pixels and placed size. These examples are not fan dimensions or approval targets.

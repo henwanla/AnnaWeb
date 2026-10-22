@@ -1,0 +1,20 @@
+SAME PIXELS, DIFFERENT SIZE
+
+Silent visual explanation, 44 seconds.
+Calculator: https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/
+
+00–06 seconds: One image. Different placed sizes. A fictional folding hand fan artwork example.
+
+06–13 seconds: 1800 by 1200 pixels at 15 by 10 centimetres gives 304.8 PPI in both directions.
+
+13–20 seconds: The same 1800 by 1200 pixels at 30 by 20 centimetres gives 152.4 PPI in both directions.
+
+20–27 seconds: Double the placed width and height, without adding pixels: PPI halves in both directions.
+
+27–35 seconds: PPI is not artwork approval. Match the image area, then confirm the model, template, print requirements and sample.
+
+35–44 seconds: Use the calculator for your actual pixels and placed size. These examples are not fan dimensions or approval targets.
+
+PPI = source pixels used / placed size in inches. One inch = 2.54 cm.
+The same source image and image area are used in both placements.
+No PPI threshold, model size, printable area or artwork approval is prescribed.

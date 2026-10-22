@@ -69,6 +69,8 @@ The resource guide links to this quote calculator and back to the official websi
 
 ## Artwork resolution and optional embedding
 
+The existing [artwork-resolution resource](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/#ppi-video-heading) also offers a silent 44-second PPI teaching clip in landscape and portrait formats, with an original poster, English WebVTT/SRT captions, HTML/text transcripts and a separate reuse permission. A native disclosure keeps playback optional; the player has controls and a preload-none hint, with no autoplay or new script. The calculator, original card, embedding options and official-site/contact routes are retained. The clip depicts fictional image placements, not a product demonstration, fan template, approved dimensions or quality threshold. Downloadable media do not establish third-party platform publication, video indexing or traffic.
+
 The [folding hand fan artwork PPI guide](https://henwanla.github.io/AnnaWeb/resources/artwork-resolution/) includes the hosted calculator, readable method, an original explanation image and its limited reuse statement. It calculates density for actual image placement, not a production template, print approval threshold or supplier guarantee. Pixel counts and physical dimensions must describe the same image area. Invalid targets clear old results; a deliberately blank target stays optional. No artwork, pixel entries or target dimensions are uploaded by the calculator.
 
 [Hosted embed example](https://henwanla.github.io/AnnaWeb/tools/ppi-embed-example.html) and two snippet formats are available:
