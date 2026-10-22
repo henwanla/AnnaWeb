@@ -63,7 +63,9 @@ Making contacts ask about production, artwork/sample scope or supplier/inspectio
 - [Fixed planning-resource release](https://github.com/henwanla/AnnaWeb/releases/tag/planning-resources-2026-10-14): the original ZIP and archive digest, retaining its packaging date. A download count does not identify an independent buyer.
 - [Blank quote cost-scope CSV](https://henwanla.github.io/AnnaWeb/downloads/quote-costs.csv) and [quote-scope explanation](https://henwanla.github.io/AnnaWeb/resources/#quote-scope-heading): record quoted, included, separate, unknown and not-applicable scope. Unknown is not zero, and included costs must not be added twice. No supplier prices or calculated totals are provided.
 
-The resource guide links to the existing local quote calculator and back to the official website or a fixed WhatsApp planning question. That question contains the public resource/tool address, not completed cells or entered amounts. Candidate product/method layouts, four planning guides, local calculators and worksheets remain planning aids, with their stated confirmation limits.
+[Custom hand fan quote comparison calculator](https://henwanla.github.io/AnnaWeb/tools/quote.html): start with blank entries, compare confirmed amounts only after matching scope, and export a local CSV. The fictional example is loaded only on request; no seller prices are supplied.
+
+The resource guide links to this quote calculator and back to the official website or a fixed WhatsApp planning question. That question contains the public resource/tool address, not completed cells or entered amounts. Candidate product/method layouts, four planning guides, local calculators and worksheets remain planning aids, with their stated confirmation limits.
 
 ## Artwork resolution and optional embedding
 
@@ -78,7 +80,7 @@ If an editor filters iframes or scripts, use an ordinary link to the guide. Snip
 
 ## Search scope and verification
 
-The design previews and local comparison helpers retain noindex. The separate resource pages declare indexability, with ordinary links and a two-page resource sitemap; those declarations do not prove search-engine crawling, indexing or AI citation. Download files have their own responses and unknown actual indexing states. Existing update receipts establish notification acceptance only. Maintaining this README is not a ninth acquisition action or another search notification.
+The design previews and other comparison helpers retain noindex. The resource guide, artwork-resolution guide and existing quote comparison calculator declare indexability with self canonicals and ordinary links. The project-root [sitemap](https://henwanla.github.io/AnnaWeb/sitemap.xml) lists these three pages; the earlier two-page resources/sitemap.xml remains available unchanged. A project-directory IndexNow key covers only /AnnaWeb/ paths. These declarations and any notification receipt do not prove search-engine crawling, indexing or AI citation; the map has not been submitted through a verified search-console property. Download files have their own responses and unknown actual indexing states. Existing update receipts establish notification acceptance only. Maintaining this README is not a ninth acquisition action or another search notification.
 
 Earlier source, memory-DOM and direct public-file checks record the revision they covered. Mocked form transport and dialog behavior do not prove native rendering, mobile use, focus containment, animation quality, actual sending or business receipt. Image-size candidates reduce stored bytes, but browser choice and loading improvements remain unmeasured. No organic-traffic or conversion increase is established. No new paid service, order-processing or payment service is added.
 
