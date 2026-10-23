@@ -9,13 +9,18 @@
   const preferences = document.getElementById('analytics-dialog');
   const consentKey = 'luvypack.analytics-consent.v1';
   const sourceKey = 'luvypack.inquiry-source.v1';
-  const analyticsAvailable = cfg.environment === 'release' && /^G-[A-Z0-9]+$/.test(cfg.measurementId || '');
+  const ga4Available = cfg.environment === 'release' && /^G-[A-Z0-9]+$/.test(cfg.measurementId || '');
+  const ownedAvailable = cfg.environment === 'release' && cfg.eventsEndpoint === '/api/events' &&
+    window.location.origin === cfg.origin;
+  const analyticsAvailable = ga4Available || ownedAvailable;
   const started = new WeakSet();
   const sending = new WeakSet();
   const openers = new WeakMap();
   const requestedTopic = new URL(window.location.href).searchParams.get('topic');
   let consent = 'unknown';
   let tagStarted = false;
+  let viewsStarted = false;
+  const pendingAnalytics = new Set();
   let sourceObserved = false;
   let sourceRecord = null;
   try {
@@ -127,7 +132,17 @@
   }
   function payload(name, id, details) {
     if (!page) return null;
-    const base = core.event(cfg.traffic, pageId,
+    let referrer = '';
+    try {
+      const ref = new URL(document.referrer);
+      if (['http:', 'https:'].includes(ref.protocol)) referrer = ref.origin;
+    } catch (_) {}
+    const base = ['page_view', 'product_view'].includes(name) ? {name, params: {
+      site_id: cfg.traffic.site_id, page_id: page.id, page_variant: page.page_variant,
+      category_id: page.category_id, page_location: cfg.origin + page.path, page_referrer: referrer,
+      ...(page.style_id ? {style_id: page.style_id} : {}),
+      ...(page.scenario_id ? {scenario_id: page.scenario_id} : {})
+    }} : core.event(cfg.traffic, pageId,
       name === 'form_submit_accepted' ? 'contact_click' : name,
       name === 'form_submit_accepted' ? {contact_method: 'form', cta_location: details.cta_location} : details || {});
     base.name = name;
@@ -139,17 +154,56 @@
     } else if (c.type === 'scenario') base.params.scenario_id = knownId(id);
     return base;
   }
+  function sendOwned(event, id) {
+    if (!ownedAvailable || consent !== 'granted' || typeof window.fetch !== 'function' ||
+        !window.crypto || typeof window.crypto.randomUUID !== 'function') return false;
+    const record = observedSource();
+    let source = null;
+    if (record) {
+      const entry = cfg.traffic.pages.find(p => p.id === record.page_id);
+      const ref = core.arrival(cfg.traffic, cfg.origin + entry.path, record.referrer_origin || '').referrer_signal;
+      source = {page_id: entry.id, evidence: record.evidence,
+        referrer_channel: ref.source, referrer_medium: ref.medium,
+        ...(record.record_id ? {record_id: record.record_id} : {})};
+    }
+    const p = event.params;
+    const data = {version: 1, site_id: cfg.traffic.site_id, consent: 'granted',
+      event_id: window.crypto.randomUUID(), event_name: event.name, page_id: pageId,
+      context_id: knownId(id), source};
+    for (const key of ['target_page_id', 'contact_method', 'cta_location']) {
+      if (p[key] !== undefined) data[key] = p[key];
+    }
+    const controller = new AbortController();
+    pendingAnalytics.add(controller);
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    // A failed analytics request must not block navigation or an inquiry. No persistent queue.
+    try {
+      window.fetch(cfg.eventsEndpoint, {method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data), credentials: 'omit', referrerPolicy: 'no-referrer',
+        cache: 'no-store', keepalive: true, signal: controller.signal})
+        .then(response => { if (!response.ok) throw new Error('Analytics unavailable'); })
+        .catch(() => {})
+        .finally(() => { clearTimeout(timeout); pendingAnalytics.delete(controller); });
+      return true;
+    } catch (_) {
+      clearTimeout(timeout); pendingAnalytics.delete(controller); return false;
+    }
+  }
   function track(name, id, details) {
-    if (!analyticsAvailable || consent !== 'granted' || !tagStarted || typeof window.gtag !== 'function') return false;
+    if (!analyticsAvailable || consent !== 'granted') return false;
     try {
       const event = payload(name, id, details);
       if (!event) return false;
-      window.gtag('event', event.name, event.params);
-      return true;
+      let sent = sendOwned(event, id);
+      if (ga4Available && tagStarted && typeof window.gtag === 'function') {
+        window.gtag('event', event.name, event.params);
+        sent = true;
+      }
+      return sent;
     } catch (_) { return false; }
   }
   function startTag() {
-    if (!analyticsAvailable || consent !== 'granted') return;
+    if (!ga4Available || consent !== 'granted') return;
     window['ga-disable-' + cfg.measurementId] = false;
     if (tagStarted) {
       window.gtag('consent', 'update', {analytics_storage: 'granted'});
@@ -187,16 +241,16 @@
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.measurementId);
     document.head.append(script);
-    if (page) {
-      window.gtag('event', 'page_view', {site_id: 'luvypack', page_id: page.id,
-        page_variant: page.page_variant, page_location: location, page_referrer: referrer,
-        ...(page.style_id ? {style_id: page.style_id} : {}),
-        ...(page.scenario_id ? {scenario_id: page.scenario_id} : {})});
+  }
+  function startAnalytics() {
+    if (!analyticsAvailable || consent !== 'granted') return;
+    startTag();
+    if (page && !viewsStarted) {
+      viewsStarted = true;
+      track('page_view', pageId);
       const product = context(pageId);
       if (product.type === 'product' && page.style_id === pageId && product.path === page.path) {
-        window.gtag('event', 'product_view', {site_id: 'luvypack', page_id: page.id,
-          category_id: product.category, product_family_id: product.family, style_id: pageId,
-          page_variant: page.page_variant, page_location: location, page_referrer: referrer});
+        track('product_view', pageId);
       }
     }
   }
@@ -204,14 +258,15 @@
     consent = value;
     try { localStorage.setItem(consentKey, value); } catch (_) {}
     if (value !== 'granted') {
+      for (const controller of pendingAnalytics) controller.abort();
       sourceRecord = null;
       sourceObserved = false;
       try { sessionStorage.removeItem(sourceKey); } catch (_) {}
     }
-    if (analyticsAvailable) {
+    if (value === 'granted') startAnalytics();
+    if (ga4Available) {
       window['ga-disable-' + cfg.measurementId] = value !== 'granted';
-      if (value === 'granted') startTag();
-      else if (typeof window.gtag === 'function') {
+      if (value !== 'granted' && typeof window.gtag === 'function') {
         window.gtag('consent', 'update', {analytics_storage: 'denied'});
         for (const entry of document.cookie.split(';')) {
           const name = entry.trim().split('=')[0];
@@ -378,8 +433,8 @@
   }
 
   if (analyticsAvailable) {
-    window['ga-disable-' + cfg.measurementId] = consent !== 'granted';
-    if (consent === 'granted') startTag();
+    if (ga4Available) window['ga-disable-' + cfg.measurementId] = consent !== 'granted';
+    if (consent === 'granted') startAnalytics();
     else if (consent === 'unknown') {
       const banner = document.createElement('aside');
       banner.dataset.analyticsBanner = '';
