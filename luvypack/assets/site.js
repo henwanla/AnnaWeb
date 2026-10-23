@@ -192,6 +192,12 @@
         page_variant: page.page_variant, page_location: location, page_referrer: referrer,
         ...(page.style_id ? {style_id: page.style_id} : {}),
         ...(page.scenario_id ? {scenario_id: page.scenario_id} : {})});
+      const product = context(pageId);
+      if (product.type === 'product' && page.style_id === pageId && product.path === page.path) {
+        window.gtag('event', 'product_view', {site_id: 'luvypack', page_id: page.id,
+          category_id: product.category, product_family_id: product.family, style_id: pageId,
+          page_variant: page.page_variant, page_location: location, page_referrer: referrer});
+      }
     }
   }
   function chooseConsent(value) {
