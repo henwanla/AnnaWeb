@@ -8,6 +8,7 @@
   const inquiry = document.getElementById('inquiry-dialog');
   const preferences = document.getElementById('analytics-dialog');
   const consentKey = 'luvypack.analytics-consent.v1';
+  const sourceKey = 'luvypack.inquiry-source.v1';
   const analyticsAvailable = cfg.environment === 'release' && /^G-[A-Z0-9]+$/.test(cfg.measurementId || '');
   const started = new WeakSet();
   const sending = new WeakSet();
@@ -15,10 +16,15 @@
   const requestedTopic = new URL(window.location.href).searchParams.get('topic');
   let consent = 'unknown';
   let tagStarted = false;
+  let sourceObserved = false;
+  let sourceRecord = null;
   try {
     const saved = localStorage.getItem(consentKey);
     if (saved === 'granted' || saved === 'denied') consent = saved;
   } catch (_) { /* A blocked storage API does not block contact. */ }
+  if (!analyticsAvailable || consent !== 'granted') {
+    try { sessionStorage.removeItem(sourceKey); } catch (_) {}
+  }
 
   function context(id) {
     return Object.prototype.hasOwnProperty.call(cfg.contexts, id) ? cfg.contexts[id] : cfg.contexts[pageId];
@@ -34,6 +40,76 @@
     if (target.pathname === clean.pathname) clean.hash = target.hash;
     return clean.href;
   }
+  function validateSource(value) {
+    if (!value || value.version !== 1) return null;
+    const entry = cfg.traffic.pages.find(p => p.id === value.page_id);
+    const evidence = ['registered_url_labels', 'referrer_origin', 'unknown', 'internal_navigation',
+      'other_external_referrer', 'unregistered_tags', 'incomplete_or_duplicate_tags'];
+    if (!entry || !evidence.includes(value.evidence)) return null;
+    const record = {version: 1, page_id: entry.id, evidence: value.evidence};
+    if (value.referrer_origin) {
+      try {
+        const ref = new URL(value.referrer_origin);
+        if (!['http:', 'https:'].includes(ref.protocol) || ref.origin !== value.referrer_origin) return null;
+        const signal = core.arrival(cfg.traffic, cfg.origin + entry.path, ref.origin);
+        if (signal.referrer_signal.evidence !== 'referrer_origin') return null;
+        record.referrer_origin = ref.origin;
+      } catch (_) { return null; }
+    }
+    if (record.evidence === 'referrer_origin' && !record.referrer_origin) return null;
+    if (record.evidence === 'registered_url_labels') {
+      const campaign = cfg.traffic.campaigns.find(c => c.id === value.record_id && c.page_id === entry.id);
+      if (!campaign) return null;
+      record.record_id = campaign.id;
+    }
+    return record;
+  }
+  function observedSource() {
+    if (!analyticsAvailable || consent !== 'granted') return null;
+    if (sourceObserved) return sourceRecord;
+    sourceObserved = true;
+    try { sourceRecord = validateSource(JSON.parse(sessionStorage.getItem(sourceKey))); } catch (_) {}
+    if (page) {
+      try {
+        const current = new URL(page.path, cfg.origin);
+        current.search = new URL(window.location.href).search;
+        const signal = core.arrival(cfg.traffic, current.href, document.referrer);
+        if (!sourceRecord || !['unknown', 'internal_navigation'].includes(signal.evidence)) {
+          const candidate = {version: 1, page_id: page.id, evidence: signal.evidence};
+          if (signal.evidence === 'registered_url_labels') candidate.record_id = signal.record_id;
+          if (signal.referrer_signal.evidence === 'referrer_origin') candidate.referrer_origin = new URL(document.referrer).origin;
+          sourceRecord = validateSource(candidate);
+        }
+      } catch (_) {}
+    }
+    try {
+      if (sourceRecord) sessionStorage.setItem(sourceKey, JSON.stringify(sourceRecord));
+      else sessionStorage.removeItem(sourceKey);
+    } catch (_) { /* Blocked storage keeps same-page contact usable. */ }
+    return sourceRecord;
+  }
+  function setSourceFields(form) {
+    const values = {source_scope: 'not_observed', source_channel: 'unknown', source_medium: 'unknown',
+      source_campaign: 'unknown', source_content: 'unknown', source_record_id: 'unknown',
+      source_evidence: 'not_observed', source_entry_page_id: 'unknown', source_entry_page_variant: 'unknown',
+      source_referrer_channel: 'unknown', source_referrer_medium: 'unknown'};
+    const record = observedSource();
+    if (record) {
+      const entry = cfg.traffic.pages.find(p => p.id === record.page_id);
+      const ref = core.arrival(cfg.traffic, cfg.origin + entry.path, record.referrer_origin || '').referrer_signal;
+      Object.assign(values, {source_scope: 'consented_tab_observation', source_evidence: record.evidence,
+        source_entry_page_id: entry.id, source_entry_page_variant: entry.page_variant || 'unknown',
+        source_referrer_channel: ref.source, source_referrer_medium: ref.medium});
+      if (record.evidence === 'registered_url_labels') {
+        const c = cfg.traffic.campaigns.find(c => c.id === record.record_id);
+        Object.assign(values, {source_channel: c.source, source_medium: c.medium,
+          source_campaign: c.campaign || c.id, source_content: c.content, source_record_id: c.id});
+      } else if (record.evidence === 'referrer_origin') {
+        values.source_channel = ref.source; values.source_medium = ref.medium;
+      }
+    }
+    for (const [name, value] of Object.entries(values)) if (form.elements.namedItem(name)) form.elements.namedItem(name).value = value;
+  }
   function setContext(form, id) {
     id = knownId(id);
     const c = context(id);
@@ -42,6 +118,7 @@
       viewed_item_id: id, source_page: sourcePage(id), site_environment: cfg.environment,
       _subject: '[LuvyPack] ' + c.label};
     for (const [name, value] of Object.entries(values)) if (form.elements.namedItem(name)) form.elements.namedItem(name).value = value;
+    setSourceFields(form);
     const panel = form.closest('dialog, .contact-form-panel');
     if (panel) {
       panel.querySelectorAll('[data-context-label]').forEach(el => { el.textContent = c.label; });
@@ -120,6 +197,11 @@
   function chooseConsent(value) {
     consent = value;
     try { localStorage.setItem(consentKey, value); } catch (_) {}
+    if (value !== 'granted') {
+      sourceRecord = null;
+      sourceObserved = false;
+      try { sessionStorage.removeItem(sourceKey); } catch (_) {}
+    }
     if (analyticsAvailable) {
       window['ga-disable-' + cfg.measurementId] = value !== 'granted';
       if (value === 'granted') startTag();
@@ -136,6 +218,7 @@
         }
       }
     }
+    document.querySelectorAll('[data-inquiry-form]').forEach(setSourceFields);
     document.querySelectorAll('[data-analytics-banner]').forEach(el => el.remove());
     preferences.querySelector('[data-consent-status]').textContent = value === 'granted' && analyticsAvailable ? 'Optional analytics is allowed.' : 'Optional analytics is off.';
     if (preferences.open && typeof preferences.close === 'function') preferences.close();
@@ -148,6 +231,9 @@
     if (first) first.focus();
     return true;
   }
+  window.addEventListener('storage', event => {
+    if (event.key === consentKey && event.newValue !== 'granted') chooseConsent('denied');
+  });
   document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('close', () => {
       const opener = openers.get(dialog);
