@@ -140,6 +140,7 @@
     const base = ['page_view', 'product_view'].includes(name) ? {name, params: {
       site_id: cfg.traffic.site_id, page_id: page.id, page_variant: page.page_variant,
       category_id: page.category_id, page_location: cfg.origin + page.path, page_referrer: referrer,
+      ...(page.product_family_id ? {product_family_id: page.product_family_id} : {}),
       ...(page.style_id ? {style_id: page.style_id} : {}),
       ...(page.scenario_id ? {scenario_id: page.scenario_id} : {})
     }} : core.event(cfg.traffic, pageId,
@@ -149,6 +150,10 @@
     const c = context(knownId(id));
     if (c.type === 'product') {
       base.params.style_id = knownId(id);
+      base.params.product_family_id = c.family;
+      base.params.category_id = c.category;
+    } else if (c.type === 'family') {
+      delete base.params.style_id;
       base.params.product_family_id = c.family;
       base.params.category_id = c.category;
     } else if (c.type === 'scenario') base.params.scenario_id = knownId(id);
@@ -423,7 +428,8 @@
         card.hidden = !match;
         if (match) count++;
       });
-      filter.querySelector('[data-catalog-count]').textContent = count + (count === 1 ? ' format' : ' formats');
+      const noun = cards.every(card => card.hasAttribute('data-family-card')) ? ' collection' : ' format';
+      filter.querySelector('[data-catalog-count]').textContent = count + noun + (count === 1 ? '' : 's');
       document.querySelector('[data-no-results]').hidden = count !== 0;
     }
     filter.addEventListener('submit', event => { event.preventDefault(); applyFilter(); });
