@@ -93,3 +93,9 @@ Earlier source, memory-DOM and direct public-file checks record the revision the
 Published Pages address: https://henwanla.github.io/AnnaWeb/
 
 Revision-specific publication and delivery evidence is recorded in the user's Obsidian vault. This repository remains a design-comparison and resource project, separate from the production website.
+
+## LuvyPack packaging review preview
+
+[Open the LuvyPack packaging preview](https://henwanla.github.io/AnnaWeb/luvypack/). This separate English concept has 25 pages for packaging formats, project applications, customization, company approach and short contact. It preserves the existing Fanique designs and resources.
+
+The LuvyPack HTML pages remain noindex and carry no production analytics tag. This is a design and interaction review preview; luvypack.com production deployment, new-domain browser contact, mailbox receipt and real analytics/search platforms are separate acceptance tasks.
