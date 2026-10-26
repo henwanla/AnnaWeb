@@ -312,8 +312,12 @@
     if (!dialog || typeof dialog.showModal !== 'function') return false;
     openers.set(dialog, opener);
     if (!dialog.open) dialog.showModal();
-    const first = dialog.querySelector('input[type=email], [data-consent]');
-    if (first) first.focus();
+    // Start with the heading when a dialog presents context and contact choices.
+    // Do not open a phone keyboard before the visitor chooses an input field.
+    const first = dialog.querySelector('[data-dialog-start]') ||
+      dialog.querySelector('input[type=email], [data-consent]:not([hidden])');
+    if (first) first.focus({preventScroll: true});
+    dialog.scrollTop = 0;
     return true;
   }
   window.addEventListener('storage', event => {
@@ -322,7 +326,7 @@
   document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('close', () => {
       const opener = openers.get(dialog);
-      if (opener && opener.isConnected) opener.focus();
+      if (opener && opener.isConnected) opener.focus({preventScroll: true});
     });
     dialog.addEventListener('click', event => {
       if (event.target !== dialog) return;
