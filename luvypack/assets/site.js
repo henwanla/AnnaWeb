@@ -13,7 +13,7 @@
   const ownedAvailable = cfg.environment === 'release' && cfg.eventsEndpoint === '/api/events' &&
     window.location.origin === cfg.origin;
   const analyticsAvailable = ga4Available || ownedAvailable;
-  const started = new WeakSet();
+  const inquiryStates = new WeakMap();
   const sending = new WeakSet();
   const openers = new WeakMap();
   const requestedTopic = new URL(window.location.href).searchParams.get('topic');
@@ -129,6 +129,25 @@
       panel.querySelectorAll('[data-context-label]').forEach(el => { el.textContent = c.label; });
       panel.querySelectorAll('[data-whatsapp]').forEach(el => setWhatsApp(el, id));
     }
+  }
+  function inquiryState(form) {
+    if (!inquiryStates.has(form)) inquiryStates.set(form, {drafts: new Map(), started: new Set()});
+    return inquiryStates.get(form);
+  }
+  function switchInquiryContext(form, id) {
+    id = knownId(id);
+    const previous = knownId(form.dataset.context);
+    if (previous !== id) {
+      const state = inquiryState(form);
+      // Contact identity stays in the form; project details belong to their own context.
+      // Drafts live only in this document's memory, never in storage, URLs or analytics.
+      state.drafts.set(previous, {message: form.elements.message.value, quantity: form.elements.quantity.value});
+      const draft = state.drafts.get(id);
+      form.elements.message.value = draft ? draft.message : '';
+      form.elements.quantity.value = draft ? draft.quantity : '';
+      form.querySelector('[data-form-status]').textContent = '';
+    }
+    setContext(form, id);
   }
   function payload(name, id, details) {
     if (!page) return null;
@@ -329,9 +348,11 @@
     const requested = pageId === 'contact' && requestedTopic ? knownId(requestedTopic) : pageId;
     setContext(form, requested);
     form.addEventListener('input', () => {
-      if (!started.has(form)) {
-        started.add(form);
-        track('inquiry_start', form.dataset.context);
+      const id = knownId(form.dataset.context);
+      const state = inquiryState(form);
+      if (!state.started.has(id)) {
+        state.started.add(id);
+        track('inquiry_start', id);
       }
     });
     form.addEventListener('submit', async event => {
@@ -361,7 +382,8 @@
         track('form_submit_accepted', id, {cta_location: form.closest('dialog') ? 'dialog' : 'content'});
         form.reset();
         setContext(form, id);
-        started.delete(form);
+        inquiryState(form).drafts.delete(id);
+        inquiryState(form).started.delete(id);
         status.textContent = 'Thank you. Your question has been submitted.';
       } catch (_) {
         status.textContent = 'Your question could not be submitted. Your text is still here. Please try again or contact us on WhatsApp.';
@@ -400,7 +422,7 @@
       const id = knownId(target.dataset.context);
       track('contact_click', id, {contact_method: 'email', cta_location: target.dataset.placement || 'content'});
       const form = inquiry.querySelector('form');
-      if (!sending.has(form)) setContext(form, id);
+      if (!sending.has(form)) switchInquiryContext(form, id);
       if (show(inquiry, target)) event.preventDefault();
       return;
     }
