@@ -625,3 +625,64 @@ figure{margin:0}
   .guide-choice-spec>div{grid-template-columns:105px minmax(0,1fr);gap:12px}
   .guide-choice>.button{width:100%}
 }
+
+/* Image positions are built from their intended job before master delivery.
+   Adopted files replace a reserved composition through explicit media selection. */
+.planned-visual{margin:0;min-width:0}
+.planned-image-frame{position:relative;aspect-ratio:var(--image-ratio);background:#e9ece7;overflow:hidden}
+.planned-image-frame>img,.planned-image-frame>picture,.planned-image-frame>picture>img{display:block;width:100%;height:100%;object-fit:contain}
+.composition-placeholder{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;color:#61716b;background:linear-gradient(140deg,#edf0ea,#dbe4df)}
+.composition-placeholder svg{display:block;flex:0 1 auto;width:42%;max-height:60%;height:auto;stroke:currentColor;stroke-width:1;opacity:.7}
+.composition-placeholder .composition-detail{stroke:#9eab9f}
+.composition-placeholder>span{font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+.planned-visual figcaption{padding-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
+.visual-action-labels{display:flex;flex-wrap:wrap;gap:10px 26px;padding:15px 0 0;margin:0;list-style:none;counter-reset:visual-step}
+.visual-action-labels li{counter-increment:visual-step;margin:0;font-size:13px;flex:1 1 100px}
+.visual-action-labels li::before{content:counter(visual-step,decimal-leading-zero);font-size:10px;color:var(--muted);margin-right:9px}
+.brand-panorama{margin-block:20px 40px}
+.brand-panorama .planned-image-frame{max-height:650px}
+.planned-panorama .composition-placeholder{background:linear-gradient(120deg,#1d3542,#3b534c);color:#d5ddd5}
+.planned-panorama figcaption{display:flex;justify-content:flex-end}
+.visual-spread{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,6vw,90px);align-items:center;border-top:1px solid var(--line)}
+.visual-spread-copy p{margin-top:24px;color:var(--muted)}
+.visual-spread-reverse .planned-visual{order:2}
+.visual-spread-reverse{grid-template-columns:.8fr 1.2fr}
+.visual-board>h2{margin-bottom:35px;max-width:21ch}
+.visual-board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px}
+.visual-board-workshop .planned-image-frame{aspect-ratio:4/3}
+.visual-board-process{background:#f5f4ef;padding-inline:clamp(20px,3vw,45px)}
+.visual-board-process .planned-visual:nth-child(2){padding-top:38px}
+.visual-board-process .planned-visual:nth-child(3){padding-top:76px}
+.material-atelier{background:#f3f1ea;padding-inline:clamp(20px,4vw,60px)}
+.material-atelier-intro{max-width:650px}
+.material-atelier-intro>p:last-child{margin-top:24px;color:var(--muted)}
+.material-atelier-images{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center;margin-top:42px}
+.material-atelier-images>.planned-visual:first-child{transform:rotate(-2deg)}
+.material-atelier-images>.planned-visual:last-child{padding-top:70px}
+.sample-review-layout{display:grid;grid-template-columns:1.3fr .7fr;gap:6vw;align-items:center}
+.sample-review-layout>div>p{margin-top:24px;color:var(--muted)}
+.sample-review-layout .text-link{margin-top:25px}
+.workshop-panorama{margin-bottom:20px}
+.about-story{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
+.project-environment{margin-block:25px 45px}
+.project-environment .planned-image-frame{max-height:680px}
+.planned-scene .composition-placeholder{background:linear-gradient(130deg,#e7dacf,#f2ece3);color:#7c6e62}
+.guide-image-studies{display:grid;gap:45px;margin-top:50px}
+@media(max-width:850px){
+  .visual-spread,.visual-spread-reverse,.about-story,.sample-review-layout{grid-template-columns:1fr;gap:32px}
+  .visual-spread-reverse .planned-visual{order:0}
+  .visual-spread-copy{max-width:650px}
+  .material-atelier-images{grid-template-columns:1fr;gap:30px}
+  .material-atelier-images>.planned-visual:first-child{transform:none;max-width:75%}
+  .material-atelier-images>.planned-visual:last-child{padding-top:0}
+  .visual-board-process .planned-visual:nth-child(n){padding-top:0}
+}
+@media(max-width:600px){
+  .planned-image-frame{aspect-ratio:var(--mobile-ratio)}
+  .visual-board-grid{grid-template-columns:1fr;gap:30px}
+  .material-atelier-images>.planned-visual:first-child{max-width:100%}
+  .brand-panorama{margin-top:32px}
+  .composition-placeholder>span{font-size:10px}
+  .visual-action-labels{gap:12px}
+  .visual-action-labels li{font-size:12px;flex-basis:80px}
+}
