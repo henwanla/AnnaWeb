@@ -98,15 +98,8 @@ li+li{margin-top:12px}
 .catalog-section{padding-top:30px}
 .catalog-tools{display:flex;flex-wrap:wrap;gap:24px;align-items:end;border-block:1px solid var(--line);padding-block:23px;margin-bottom:40px}
 .catalog-tools label{font-size:14px;font-weight:600}
-.catalog-tools input,.catalog-tools select{display:block;min-height:45px;min-width:220px;margin-top:8px;background:var(--white);border:1px solid #8a7868;border-radius:3px;padding:9px 12px}
+.catalog-tools select{display:block;min-height:45px;min-width:220px;margin-top:8px;background:var(--white);border:1px solid #8a7868;border-radius:3px;padding:9px 12px}
 .catalog-tools p{flex-basis:100%;font-size:14px;color:var(--muted);margin:0;padding:0}
-.catalog-tools [data-clear-filter]{min-height:45px}
-.catalog-matches{border-top:1px solid var(--line);margin-top:18px;padding-top:14px}
-.catalog-matches>p{font-size:13px;color:var(--muted);margin:0 0 6px}
-.catalog-matches ul{list-style:none;margin:0;padding:0}
-.catalog-matches a{display:flex;flex-direction:column;justify-content:center;min-height:48px;padding:8px 0;overflow-wrap:anywhere}
-.catalog-matches a span{font-weight:600;text-decoration:underline;text-underline-offset:3px}
-.catalog-matches small{color:var(--muted);font-size:12px;margin-top:3px}
 .format-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 30px}
 .product-hero{padding-block:40px 68px;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(35px,5vw,80px);align-items:center}
 .product-visual img{width:100%;height:auto}
@@ -308,7 +301,7 @@ body{font-size:16px;padding-bottom:82px}
 .page-heading p:not(.quiet-label){font-size:18px}
 .catalog-tools{gap:18px}
 .catalog-tools label{width:100%;margin:0}
-.catalog-tools input,.catalog-tools select{width:100%;min-width:0}
+.catalog-tools select{width:100%;min-width:0}
 .catalog-tools p{padding:0}
 .format-grid{gap:30px 18px}
 .format-text{min-height:160px;padding:16px 0}
@@ -759,3 +752,12 @@ figure{margin:0}
   .finish-option h3{margin:0 0 8px}
   .finish-option details{grid-column:2}
 }
+
+.construction-reference-image{display:block;aspect-ratio:1;background:var(--white);overflow:hidden}
+.construction-reference-image img{display:block;width:100%;height:100%;object-fit:contain}
+.construction-reference-checks{font-size:14px;line-height:1.6;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.construction-reference-checks summary{cursor:pointer;color:var(--ink)}
+.construction-reference-checks ul{margin:16px 0 0;padding-left:20px}
+.construction-reference-checks li{margin-top:12px}
+.construction-reference-checks strong,.construction-reference-checks span{display:block}
+.construction-reference-checks span{color:var(--muted)}

@@ -447,49 +447,19 @@
   const filter = document.querySelector('[data-catalog-filter]');
   if (filter) {
     filter.hidden = false;
-    const search = filter.querySelector('input[type=search]');
     const kind = filter.querySelector('select');
     const cards = Array.from(document.querySelectorAll('[data-format-card]'));
-    const words = value => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/).filter(Boolean);
     function applyFilter() {
-      const query = words(search.value);
-      const matches = value => {
-        const text = words(value);
-        return query.every(word => text.some(token => /^\d+$/.test(word) ? token === word : token.startsWith(word)));
-      };
       let count = 0;
-      let designCount = 0;
       cards.forEach(card => {
-        const designs = Array.from(card.querySelectorAll('[data-catalog-design]'));
-        const structureMatch = kind.value === 'all' || card.dataset.kind === kind.value;
-        let found = 0;
-        designs.forEach(design => {
-          const match = query.length > 0 && structureMatch && matches(design.dataset.search);
-          design.hidden = !match;
-          if (match) found++;
-        });
-        const results = card.querySelector('[data-design-matches]');
-        if (results) results.hidden = found === 0;
-        const match = structureMatch && (designs.length ? !query.length || found > 0 : matches(card.dataset.search));
+        const match = kind.value === 'all' || card.dataset.kind === kind.value;
         card.hidden = !match;
         if (match) count++;
-        designCount += found;
       });
       const noun = cards.every(card => card.hasAttribute('data-family-card')) ? ' collection' : ' format';
-      filter.querySelector('[data-catalog-count]').textContent = count + noun + (count === 1 ? '' : 's') +
-        (query.length && cards.some(card => card.querySelector('[data-catalog-design]')) ?
-          ' · ' + designCount + ' matching design' + (designCount === 1 ? '' : 's') : '');
-      document.querySelector('[data-no-results]').hidden = count !== 0;
+      filter.querySelector('[data-catalog-count]').textContent = count + noun + (count === 1 ? '' : 's');
     }
-    filter.addEventListener('submit', event => { event.preventDefault(); applyFilter(); });
-    search.addEventListener('input', applyFilter);
     kind.addEventListener('change', applyFilter);
-    filter.querySelector('[data-clear-filter]').addEventListener('click', () => {
-      search.value = '';
-      kind.value = 'all';
-      applyFilter();
-      search.focus();
-    });
     applyFilter();
   }
 
