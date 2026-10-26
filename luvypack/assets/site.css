@@ -561,6 +561,8 @@ figure{margin:0}
 .guide-choice-spec dd{margin:0;color:var(--muted)}
 .guide-choice>.button{align-self:flex-start;margin-top:auto}
 .guide-decision>.guide-decision-next{margin-top:28px;color:var(--ink)}
+.guide-packed-sample{margin-top:28px}
+.guide-packed-sample .guide-checklist{margin-block:20px 0}
 .guide-delivery .guide-role{border-left:3px solid #b79970;padding-left:12px}
 .guide-decision caption{text-align:left;font-size:14px;color:var(--muted);padding-bottom:16px}
 
