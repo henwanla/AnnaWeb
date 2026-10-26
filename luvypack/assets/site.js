@@ -341,6 +341,11 @@
   if (pageId === 'contact' && requestedTopic && cfg.contexts[requestedTopic]) {
     document.querySelectorAll('[data-context="contact"]').forEach(el => { el.dataset.context = requestedTopic; });
   }
+  document.querySelectorAll('[data-open-inquiry]').forEach(link => {
+    const url = new URL(link.href);
+    url.searchParams.set('topic', knownId(link.dataset.context));
+    link.href = url.href;
+  });
   document.querySelectorAll('[data-whatsapp]').forEach(link => {
     setWhatsApp(link, link.dataset.context);
   });
@@ -419,8 +424,11 @@
       return;
     }
     if (target.matches('[data-open-inquiry]')) {
+      if (event.defaultPrevented) return;
       const id = knownId(target.dataset.context);
       track('contact_click', id, {contact_method: 'email', cta_location: target.dataset.placement || 'content'});
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0 ||
+          (target.target && target.target !== '_self')) return;
       const form = inquiry.querySelector('form');
       if (!sending.has(form)) switchInquiryContext(form, id);
       if (show(inquiry, target)) event.preventDefault();
