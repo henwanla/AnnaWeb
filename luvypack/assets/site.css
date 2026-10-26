@@ -529,3 +529,36 @@ figure{margin:0}
   .related-formats .format-caption h3{font-size:17px}
   .related-formats .media-placeholder>small{display:none}
 }
+
+/* The planning guide compares exact objects without creating a new catalog. */
+.guide-jumps{display:flex;flex-wrap:wrap;gap:10px;margin-block:30px 44px}
+.guide-jumps a{display:inline-flex;align-items:center;min-height:44px;border:1px solid var(--line);padding:10px 16px;text-decoration:none;font-size:14px}
+.guide-jumps a:hover{border-color:var(--ink);background:var(--paper)}
+.guide-decision{margin-top:54px;padding-top:34px;border-top:1px solid var(--line);scroll-margin-top:24px}
+.guide-decision>h2{font-size:clamp(28px,3.1vw,40px);max-width:25ch;margin-bottom:20px}
+.guide-decision>p{max-width:70ch;color:var(--muted)}
+.guide-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:30px}
+.guide-choice{min-width:0;display:flex;flex-direction:column}
+.guide-role{font-size:14px;font-weight:600;margin-bottom:14px}
+.guide-choice-photo{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--paper)}
+.guide-choice-photo>img{width:100%;height:100%;object-fit:contain}
+.guide-choice h3{font-size:24px;line-height:1.3;margin-top:22px}
+.guide-choice h3 a{text-decoration:none}
+.guide-choice h3 a:hover{text-decoration:underline}
+.guide-code{font-size:12px;color:var(--muted);margin-top:9px}
+.guide-choice-focus{font-size:16px;color:var(--muted);margin-top:18px}
+.guide-choice-spec{margin-block:24px}
+.guide-choice-spec>div{border-top:1px solid var(--line);padding-block:12px;display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;font-size:14px}
+.guide-choice-spec dt{font-weight:600}
+.guide-choice-spec dd{margin:0;color:var(--muted)}
+.guide-choice>.button{align-self:flex-start;margin-top:auto}
+.guide-decision>.guide-decision-next{margin-top:28px;color:var(--ink)}
+.guide-delivery .guide-role{border-left:3px solid #8da99b;padding-left:12px}
+.guide-decision caption{text-align:left;font-size:14px;color:var(--muted);padding-bottom:16px}
+@media(max-width:600px){
+  .guide-choices{grid-template-columns:1fr;gap:38px}
+  .guide-decision{margin-top:38px;padding-top:28px}
+  .guide-choice h3{font-size:23px}
+  .guide-choice-spec>div{grid-template-columns:105px minmax(0,1fr);gap:12px}
+  .guide-choice>.button{width:100%}
+}
