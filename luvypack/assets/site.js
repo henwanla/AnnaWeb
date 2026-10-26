@@ -395,7 +395,7 @@
         inquiryState(form).started.delete(id);
         status.textContent = 'Thank you. Your question has been submitted.';
       } catch (_) {
-        status.textContent = 'Your question could not be submitted. Your text is still here. Please try again or contact us on WhatsApp.';
+        status.textContent = 'We could not confirm your submission. Your text is still here. You can also contact us on WhatsApp.';
         status.focus();
       } finally {
         clearTimeout(timeout);
