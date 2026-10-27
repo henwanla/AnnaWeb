@@ -1,6 +1,6 @@
 # Fanique design comparison and planning resources
 
-Six alternative page designs and optional procurement resources for Fanique. These previews are separate from the live website; they do not replace getfanique.com.
+Six alternative page designs and optional procurement resources for Fanique. These previews are separate from the live website; they do not replace getfanique.com. The [LuvyPack packaging website and review](#luvypack-official-packaging-website) are listed below.
 
 ## Official Fanique website
 
@@ -94,8 +94,15 @@ Published Pages address: https://henwanla.github.io/AnnaWeb/
 
 Revision-specific publication and delivery evidence is recorded in the user's Obsidian vault. This repository remains a design-comparison and resource project, separate from the production website.
 
-## LuvyPack packaging review preview
+## LuvyPack official packaging website
 
-[Open the LuvyPack packaging preview](https://henwanla.github.io/AnnaWeb/luvypack/). This separate English concept has 25 pages for packaging formats, project applications, customization, company approach and short contact. It preserves the existing Fanique designs and resources.
+Browse [LuvyPack's packaging catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) for six collections and thirty designs: printed mailers, PU and velvet-lined jewelry boxes, LED presentation boxes, snap-flap ring pouches and velvet drawstring pouches.
 
-The LuvyPack HTML pages remain noindex and carry no production analytics tag. This is a design and interaction review preview; luvypack.com production deployment, new-domain browser contact, mailbox receipt and real analytics/search platforms are separate acceptance tasks.
+| What you want to explore | Official website page |
+| --- | --- |
+| Packaging collections and individual designs | [Browse the LuvyPack catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) |
+| Compare packaging roles and box formats | [Packaging selection guide](https://luvypack.com/guides/box-selection/) |
+| Prepare a packaging project inquiry | [Project planning checklist](https://luvypack.com/guides/quote-checklist/) |
+| Discuss a packaging idea | [Contact LuvyPack](https://luvypack.com/contact/) |
+
+The [49-page LuvyPack review preview](https://henwanla.github.io/AnnaWeb/luvypack/) remains available for design comparison, with noindex and production collection disabled. The official website is live at https://luvypack.com/. Fanique designs and planning resources are preserved separately above.
