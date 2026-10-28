@@ -138,6 +138,9 @@ li+li{margin-top:12px}
 .product-no-photo .quick-spec{max-width:670px}
 .related-formats{margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .related-formats .format-caption h3{font-size:20px}
+.piece-alternatives{margin-top:40px;padding-top:26px;border-top:1px solid var(--line)}
+.piece-alternatives h3{font-size:clamp(20px,2vw,26px)}
+.piece-alternatives p{margin-top:14px;line-height:2}
 .product-notes details{border-top:1px solid var(--line);margin-top:24px;padding-top:18px}
 summary{cursor:pointer;font-weight:600}
 details[open]>summary{margin-bottom:18px}
