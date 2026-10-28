@@ -220,7 +220,8 @@
     try {
       const event = payload(name, id, details);
       if (!event) return false;
-      let sent = sendOwned(event, id);
+      // comparison_select is GA4-only: the existing D1 event constraint is unchanged.
+      let sent = name === 'comparison_select' ? false : sendOwned(event, id);
       if (ga4Available && tagStarted && typeof window.gtag === 'function') {
         window.gtag('event', event.name, event.params);
         sent = true;
@@ -449,6 +450,8 @@
       {contact_method: 'whatsapp', cta_location: target.dataset.placement || 'content'});
     if (target.matches('[data-scenario-link]')) track('scenario_select', pageId,
       {target_page_id: target.dataset.targetPage});
+    if (target.matches('[data-comparison-target]')) track('comparison_select', pageId,
+      {target_page_id: target.dataset.comparisonTarget});
     if (target.matches('[data-download]')) track('catalog_click', pageId);
   });
   document.querySelectorAll('[data-spec]').forEach(el => el.addEventListener('toggle', () => {

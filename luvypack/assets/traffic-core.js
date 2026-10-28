@@ -8,6 +8,7 @@
   const events={
     contact_click:'点击联系入口；不等于发送或收到消息',
     scenario_select:'选择场景入口；不证明采购意图',
+    comparison_select:'点击同用途产品比较链接；不等于目标页加载或询盘',
     spec_open:'主动打开规格说明；不等于认同质量',
     customization_start:'进入定制说明或操作；不等于提交需求',
     catalog_click:'点击资料下载入口；不等于下载完成',
@@ -96,14 +97,14 @@
   function event(config,pageId,name,details={}){
     validate(config);const p=page(config,pageId);
     if(!Object.hasOwn(events,name))throw Error('未支持的事件；本工具不生成收件、成交或付款事件');
-    const allowed=name==='contact_click'?['contact_method','cta_location']:name==='scenario_select'?['target_page_id']:[];
+    const allowed=name==='contact_click'?['contact_method','cta_location']:['scenario_select','comparison_select'].includes(name)?['target_page_id']:[];
     fields(details,allowed,'事件');
     const extra={};
     if(name==='contact_click'){
       if(!methods.includes(details.contact_method)||!placements.includes(details.cta_location))throw Error('联系方法或位置无效');
       Object.assign(extra,details);
     }
-    if(name==='scenario_select'){page(config,details.target_page_id);extra.target_page_id=details.target_page_id;}
+    if(['scenario_select','comparison_select'].includes(name)){page(config,details.target_page_id);extra.target_page_id=details.target_page_id;}
     const params={site_id:config.site_id,page_id:p.id,motivation_route:p.motivation_route,audience_path:p.audience_path};
     for(const k of contextFields)if(p[k]!==undefined)params[k]=p[k];
     // The adapter supplies these for its custom events only. Existing tags need a separate PII review.
