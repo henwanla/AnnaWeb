@@ -20,6 +20,8 @@
   const audiences=['business','personal','shared','unknown'];
   const knownReferrers={
     'google.com':['google','search'],'google.co.uk':['google','search'],
+    'google.ca':['google','search'],'google.de':['google','search'],
+    'google.fr':['google','search'],'google.com.au':['google','search'],
     'bing.com':['bing','search'],'pinterest.com':['pinterest','social'],
     'linkedin.com':['linkedin','social'],'youtube.com':['youtube','video'],'github.com':['github','referral'],
     'henwanla.github.io':['github','referral'],
