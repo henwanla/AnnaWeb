@@ -21,7 +21,7 @@
 <div id="copy-area" hidden><label for="summary">Your measurement summary</label><textarea id="summary" rows="5" readonly></textarea><div class="actions"><button type="button" class="secondary" id="copy-summary">Copy summary</button></div><p class="help" id="copy-status" role="status" aria-live="polite"></p><p class="help">Review and paste it into your message only if you choose to share it. Nothing is sent automatically.</p></div><noscript><p>Enable JavaScript to calculate. The measuring guidance below remains available.</p></noscript>
 </section><aside class="panel aside"><p class="eyebrow">Before you measure</p><h2>Piece, insert, box.</h2><ol><li>Measure the full item as you intend to place it, including any attachment.</li><li>Measure the usable cavity with its insert fitted, not the outside of the box.</li><li>Check the opening, removal, lid clearance and contact points with a physical sample.</li></ol><p class="note">A dimensional match is a starting point, not proof of a safe fit or shipping protection. Rigid-envelope calculations cannot account for shape, materials or movement.</p><a href="https://luvypack.com/guides/jewelry-packaging-size/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=packaging_launch&amp;utm_content=fit_tool">Read the jewelry packaging size guide →</a></aside></div>
 <section class="guide" aria-label="Practical measuring guidance"><article><h3>Inside or outside?</h3><p>A finished box's outside dimensions include its walls and covering. Compare the item with the <strong>usable inside</strong>, after the insert is in place.</p></article><article><h3>Can the item rotate?</h3><p>The tool checks all six axis alignments. A listed alignment may still be unsuitable for a chain, a fragile setting, a shaped insert or the desired presentation.</p></article><article><h3>What should I send?</h3><p>Share the item's size, a photo, the preferred packaging and approximate quantity. Clarify units and whether a requested box size is internal or external.</p><a href="https://luvypack.com/contact/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=packaging_launch&amp;utm_content=fit_tool_contact">Ask a packaging question →</a></article></section>
-<section class="panel" style="margin-top:38px"><h2>Frequently asked questions</h2><h3>How many millimeters are in an inch?</h3><p>One international inch is exactly 25.4 mm. The unit selector converts the values already entered; displayed values are rounded to six decimal places. <a href="https://www.nist.gov/pml/owm/si-units-length">NIST length reference</a>.</p><h3>Does a fit result mean I can ship the item safely?</h3><p>No. This tool compares rectangular measurements only. Test the complete packed order, including cushioning and closure, for your delivery conditions.</p><h3>Is the calculation sent anywhere?</h3><p>No. The calculation runs in this page in your browser. The tool does not submit your measurements or create an inquiry.</p></section>
+<section class="panel" style="margin-top:38px"><h2>Frequently asked questions</h2><h3>How many millimeters are in an inch?</h3><p>One international inch is exactly 25.4 mm. The unit selector converts the values already entered. Values are usually rounded to six decimal places; very small values use scientific notation. <a href="https://www.nist.gov/pml/owm/si-units-length">NIST length reference</a>.</p><h3>Does a fit result mean I can ship the item safely?</h3><p>No. This tool compares rectangular measurements only. Test the complete packed order, including cushioning and closure, for your delivery conditions.</p><h3>Is the calculation sent anywhere?</h3><p>No. The calculation runs in this page in your browser. The tool does not submit your measurements or create an inquiry.</p></section>
 </main><footer>Independent planning tool by LuvyPack · <a href="https://luvypack.com/guides/box-selection/">Compare packaging formats</a> · <a href="https://github.com/henwanla/AnnaWeb">Project repository</a></footer>
 <script>
 (function(){'use strict';
@@ -29,7 +29,7 @@
  const item=['item-l','item-w','item-h'].map(id=>document.getElementById(id));
  const box=['box-l','box-w','box-h'].map(id=>document.getElementById(id));
  const gap=document.getElementById('clearance'),copyArea=document.getElementById('copy-area'),summary=document.getElementById('summary'),copyStatus=document.getElementById('copy-status');let previous=unit.value;
- const round=n=>String(Number(n.toFixed(6)));
+ const round=n=>{const value=Number(n.toFixed(6));return n!==0&&value===0?n.toExponential(6):String(value);};
  function message(title,text){result.replaceChildren();const h=document.createElement('h2'),p=document.createElement('p');h.textContent=title;p.textContent=text;result.append(h,p);result.hidden=false;}
  function invalidate(){result.hidden=true;copyArea.hidden=true;summary.value='';copyStatus.textContent='';}
  for(const field of [...item,...box,gap])field.addEventListener('input',invalidate);
@@ -41,12 +41,22 @@
   const values=[...item,...box].map(x=>x.value===''?NaN:Number(x.value));const clearance=gap.value===''?0:Number(gap.value);
   if(values.some(v=>!Number.isFinite(v)||v<=0)||!Number.isFinite(clearance)||clearance<0){invalidate();message('Check your measurements','Enter a positive number for each item and box dimension, and zero or more for clearance.');return;}
   const a=values.slice(0,3),b=values.slice(3),perms=[[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
-  const matches=perms.filter(p=>p.every((n,i)=>a[n]+2*clearance<=b[i]+1e-9));
+  const required=a.map(n=>n+2*clearance);
+  if(required.some(n=>!Number.isFinite(n))){invalidate();message('Check your measurements','The measurements are too large to calculate. Enter smaller, realistic dimensions.');return;}
+  const tolerance=(x,y)=>Number.EPSILON*Math.max(Number.MIN_VALUE,Math.abs(x),Math.abs(y))*4;
+  const matches=perms.filter(p=>p.every((n,i)=>required[n]<=b[i]+tolerance(required[n],b[i])));
   const labels=['item length','item width','item height'];
+  let shortfall='';
   if(matches.length){const p=matches[0];message('A dimension match is possible',`At least one axis alignment fits with ${round(clearance)} ${unit.value} clearance on each side. One alignment: ${labels[p[0]]} along box length, ${labels[p[1]]} along box width, and ${labels[p[2]]} along box height. Check the real item, insert, opening and closure on a sample.`);}
-  else message('No axis alignment fits','The entered dimensions do not fit in any of the six axis alignments with the stated clearance. Review the measurements, allowance or box size.');
+  else {
+   const candidates=perms.map(p=>({p,missing:p.map((n,i)=>Math.max(0,required[n]-b[i]))}));
+   const best=candidates.reduce((x,y)=>y.missing.reduce((s,v)=>s+v/3,0)<x.missing.reduce((s,v)=>s+v/3,0)?y:x);
+   const show=round;
+   shortfall=`One alignment with the smallest total shortfall: ${labels[best.p[0]]} along box length, ${labels[best.p[1]]} along box width, and ${labels[best.p[2]]} along box height. Extra usable space needed: length ${show(best.missing[0])}, width ${show(best.missing[1])}, height ${show(best.missing[2])} ${unit.value}.`;
+   message('No axis alignment fits',shortfall+' This is a rectangular comparison, not a recommended box size. Check the sample, opening and protection.');
+  }
   const dimensions=v=>v.map(round).join(' × ')+' '+unit.value;
-  summary.value='Item overall: '+dimensions(a)+'\nUsable inner space: '+dimensions(b)+'\nClearance per side: '+round(clearance)+' '+unit.value+'\nResult: '+(matches.length?'dimension match possible':'no axis alignment fits')+'\nPlease confirm the insert, opening and sample.';
+  summary.value='Item overall: '+dimensions(a)+'\nUsable inner space: '+dimensions(b)+'\nClearance per side: '+round(clearance)+' '+unit.value+'\nResult: '+(matches.length?'dimension match possible':'no axis alignment fits')+(shortfall?'\n'+shortfall:'')+'\nPlease confirm the insert, opening and sample.';
   copyStatus.textContent='';copyArea.hidden=false;
  }
  form.addEventListener('submit',e=>{e.preventDefault();calculate();});
