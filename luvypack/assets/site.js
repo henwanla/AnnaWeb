@@ -443,6 +443,9 @@
           (target.target && target.target !== '_self')) return;
       const form = inquiry.querySelector('form');
       if (!sending.has(form)) switchInquiryContext(form, id);
+      else if (knownId(form.dataset.context) !== id) {
+        form.querySelector('[data-form-status]').textContent = 'Sending your previous question. Please wait, then try your new selection again.';
+      }
       if (show(inquiry, target)) event.preventDefault();
       return;
     }
