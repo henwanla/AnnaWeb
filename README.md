@@ -104,6 +104,7 @@ Browse [LuvyPack's custom packaging catalog](https://luvypack.com/products/?utm_
 | Keep or share the full collection with your team | [View the collection guide on the website](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme#collection-guide-title) · [Download the 12-page English PDF directly (0.8 MB)](https://luvypack.com/resources/luvypack-collection-guide.pdf) |
 | Choose a box or pouch for jewelry | [Jewelry packaging by use](https://luvypack.com/industries/jewelry/) |
 | Check the piece, insert and packed fit | [Jewelry packaging size guide](https://luvypack.com/guides/jewelry-packaging-size/) |
+| Check item and usable box dimensions before discussing a sample | [Free packaging fit calculator](https://henwanla.github.io/AnnaWeb/resources/packaging-fit/) |
 | Understand presentation boxes and outer mailers | [Compare packaging formats](https://luvypack.com/guides/box-selection/) |
 | Prepare dimensions, quantities and sample questions | [Packaging quote checklist](https://luvypack.com/guides/quote-checklist/) |
 | Send a first question | [Contact LuvyPack](https://luvypack.com/contact/) |
