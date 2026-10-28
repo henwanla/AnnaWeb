@@ -17,7 +17,9 @@
   const sending = new WeakSet();
   const openers = new WeakMap();
   const requestedTopic = new URL(window.location.href).searchParams.get('topic');
-  let consent = 'unknown';
+  // Start visit measurement without a first-visit prompt. A saved off choice
+  // retains precedence; preview/unconfigured builds still cannot collect.
+  let consent = 'granted';
   let tagStarted = false;
   let viewsStarted = false;
   const pendingAnalytics = new Set();
@@ -305,7 +307,7 @@
     }
     document.querySelectorAll('[data-inquiry-form]').forEach(setSourceFields);
     document.querySelectorAll('[data-analytics-banner]').forEach(el => el.remove());
-    preferences.querySelector('[data-consent-status]').textContent = value === 'granted' && analyticsAvailable ? 'Optional analytics is allowed.' : 'Optional analytics is off.';
+    preferences.querySelector('[data-consent-status]').textContent = value === 'granted' && analyticsAvailable ? 'Analytics is on.' : 'Analytics is off.';
     if (preferences.open && typeof preferences.close === 'function') preferences.close();
   }
   function show(dialog, opener) {
@@ -420,8 +422,9 @@
       return;
     }
     if (target.matches('[data-analytics-preferences]')) {
+      preferences.querySelector('[data-consent-status]').textContent = analyticsAvailable && consent === 'granted' ? 'Analytics is on.' : 'Analytics is off.';
       if (!analyticsAvailable) {
-        preferences.querySelector('[data-analytics-description]').textContent = 'Optional analytics is currently off.';
+        preferences.querySelector('[data-analytics-description]').textContent = 'Analytics is currently off for this site version.';
         preferences.querySelector('[data-consent="granted"]').hidden = true;
       }
       if (show(preferences, target)) event.preventDefault();
@@ -470,20 +473,5 @@
   if (analyticsAvailable) {
     if (ga4Available) window['ga-disable-' + cfg.measurementId] = consent !== 'granted';
     if (consent === 'granted') startAnalytics();
-    else if (consent === 'unknown') {
-      const banner = document.createElement('aside');
-      banner.dataset.analyticsBanner = '';
-      banner.className = 'analytics-banner';
-      banner.setAttribute('aria-label', 'Optional analytics');
-      const text = document.createElement('span');
-      text.textContent = 'Allow optional analytics to help us understand which packaging is useful?';
-      banner.append(text);
-      for (const [value, label] of [['granted', 'Allow analytics'], ['denied', 'Keep analytics off']]) {
-        const button = document.createElement('button');
-        button.type = 'button'; button.className = 'button button-line';
-        button.dataset.consent = value; button.textContent = label; banner.append(button);
-      }
-      document.querySelector('.site-header').after(banner);
-    }
   }
 }());
