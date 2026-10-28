@@ -20,7 +20,7 @@
   const knownReferrers={
     'google.com':['google','search'],'google.co.uk':['google','search'],
     'bing.com':['bing','search'],'pinterest.com':['pinterest','social'],
-    'linkedin.com':['linkedin','social'],'youtube.com':['youtube','video'],
+    'linkedin.com':['linkedin','social'],'youtube.com':['youtube','video'],'github.com':['github','referral'],
     'chatgpt.com':['chatgpt','ai'],'perplexity.ai':['perplexity','ai'],
     'copilot.microsoft.com':['copilot','ai']
   };
