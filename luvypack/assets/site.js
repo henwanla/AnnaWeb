@@ -122,8 +122,8 @@
     const c = context(id);
     form.dataset.context = id;
     const values = {site_id: 'luvypack', brand: 'LuvyPack', viewed_item: c.label,
-      viewed_item_id: id, source_page: sourcePage(id), site_environment: cfg.environment,
-      _subject: '[LuvyPack] ' + c.label};
+      viewed_item_id: id, source_page: sourcePage(id), reference_page: new URL(c.path, cfg.origin).href,
+      site_environment: cfg.environment, _subject: '[LuvyPack] ' + c.label};
     for (const [name, value] of Object.entries(values)) if (form.elements.namedItem(name)) form.elements.namedItem(name).value = value;
     setSourceFields(form);
     const panel = form.closest('dialog, .contact-form-panel');
@@ -340,7 +340,11 @@
   function setWhatsApp(link, id) {
     id = knownId(id);
     const url = new URL(cfg.whatsapp);
-    url.searchParams.set('text', 'Hello LuvyPack, I have a question.\nViewing: ' + context(id).label + '\nPage: ' + sourcePage(id));
+    const source = sourcePage(id);
+    const reference = new URL(context(id).path, cfg.origin).href;
+    const message = 'Hello LuvyPack, I have a question.\nViewing: ' + context(id).label + '\nPage: ' + source +
+      (reference !== source ? '\nReference: ' + reference : '');
+    url.searchParams.set('text', message);
     link.href = url.href;
     link.dataset.context = id;
   }
