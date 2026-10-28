@@ -38,7 +38,7 @@
         '.section-heading, .collection-board > .format-card, .format-grid > .format-card,' +
         '.sku-lineup > .format-card, .occasion-link, .visual-spread-copy,' +
         '.visual-board .planned-visual, .region-grid > li, .material-atelier-intro,' +
-        '.about-story > div, .factory-intro > div, .project-timeline li, .fit-editorial > div, .process-list > li, .closing-contact > .wrap'
+        '.about-story > div, .factory-intro > div, .project-timeline > ol, .fit-editorial > div, .process-list > li, .closing-contact > .wrap'
       );
       observer = new IntersectionObserver((entries, observed) => {
         if (observer !== observed) return;
