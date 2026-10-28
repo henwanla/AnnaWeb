@@ -113,6 +113,14 @@ Browse [LuvyPack's custom packaging catalog](https://luvypack.com/products/?utm_
 | Prepare dimensions, quantities and sample questions | [Packaging quote checklist](https://luvypack.com/guides/quote-checklist/) |
 | Send a first question | [Contact LuvyPack](https://luvypack.com/contact/) |
 
-Collections include custom printed mailers, PU jewelry boxes, velvet-lined paper jewelry boxes, snap-flap ring pouches, velvet drawstring pouches, blue drawer jewelry boxes, white drawstring jewelry pouches, white foldable magnetic gift boxes, white-and-blue ribbon jewelry boxes, cork-trim jewelry boxes and champagne-gold jewelry boxes. Use a product reference to start a project quote.
+Choose a collection by what you need to package:
+
+| Packaging decision | Product collections |
+| --- | --- |
+| Send an order or prepare a foldable gift box | [Custom printed mailer boxes](https://luvypack.com/products/branded-mailer/) · [White foldable magnetic boxes](https://luvypack.com/products/white-foldable-magnetic-box/) |
+| Present jewelry in a box | [PU jewelry boxes](https://luvypack.com/products/pu-jewelry-box/) · [Velvet-lined jewelry boxes](https://luvypack.com/products/velvet-lined-jewelry-box/) · [Blue drawer jewelry boxes](https://luvypack.com/products/blue-drawer-jewelry-box/) · [White and blue ribbon jewelry boxes](https://luvypack.com/products/white-blue-ribbon-jewelry-box/) · [Cork-trim jewelry boxes](https://luvypack.com/products/cork-trim-jewelry-box/) · [Champagne-gold jewelry boxes](https://luvypack.com/products/champagne-gold-jewelry-box/) |
+| Choose a pouch for jewelry | [Snap-flap ring pouches](https://luvypack.com/products/snap-flap-ring-pouch/) · [Velvet drawstring pouches](https://luvypack.com/products/velvet-drawstring-pouch/) · [White drawstring jewelry pouches](https://luvypack.com/products/white-drawstring-jewelry-pouch/) |
+
+Open a collection to compare its available designs and ask about the requirements for your project.
 
 The [LuvyPack review preview](https://henwanla.github.io/AnnaWeb/luvypack/) remains available for design comparison, with noindex and production collection disabled. The official website is live at https://luvypack.com/. Fanique designs and planning resources are preserved separately above.
