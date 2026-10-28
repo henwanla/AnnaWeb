@@ -51,7 +51,7 @@ li+li{margin-top:12px}
 .header-inner{width:min(1540px,calc(100% - var(--space)*2));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px;padding-block:24px}
 .brand{display:block;flex:0 0 185px}
 .brand-logo{width:185px;height:auto}
-.site-header nav{display:flex;align-items:center;gap:clamp(16px,2.3vw,36px)}
+.site-header nav{display:flex;align-items:center;gap:clamp(16px,2vw,30px)}
 .site-header nav a{font-size:15px;text-decoration:none;white-space:nowrap}
 .site-header nav a:hover{color:var(--accent)}
 .site-header .button{font-size:15px;min-height:43px;padding:11px 17px;white-space:nowrap}
@@ -856,3 +856,43 @@ figure{margin:0}
   .hero-main>a,.product-photo-stage,.button,.actions>a.button-primary::after,.quick-contact svg,.site-header nav a:not(.button),.text-link,.collection-link,.quick-contact a,.format-caption h3,.occasion-link h3,.format-card .card-media>img,.occasion-media>img{transition:none;transform:none}
   .process-list>li.motion-seen::after{animation:none}
 }
+
+/* Buyer tasks: navigable content, with the photograph kept beside its explanation. */
+.buyer-route-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.buyer-route-grid>a{display:grid;grid-template-columns:30px 1fr 20px;gap:18px;align-items:start;padding:28px 26px 28px 0;border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
+.buyer-route-grid>a:nth-child(even){border-left:1px solid var(--line);padding-left:28px}
+.buyer-route-number{font-size:13px;color:var(--accent);padding-top:5px}
+.buyer-route-grid strong{font-size:22px;font-weight:500;line-height:1.3;display:block}
+.buyer-route-grid small{display:block;font-size:15px;color:var(--muted);margin-top:9px;max-width:37ch;line-height:1.5}
+.buyer-route-grid>a:hover strong{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+.planning-links{padding:34px;background:#f6f0e6;border:1px solid var(--line)}
+.planning-links h2{font-size:clamp(26px,3vw,36px);margin-top:10px}
+.planning-links ul{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;padding:0;margin:28px 0 0;list-style:none}
+.planning-links li{min-width:0}
+.planning-links li a{font-size:18px;font-weight:600;text-underline-offset:4px}
+.planning-links li p{font-size:15px;color:var(--muted);margin-top:7px;max-width:35ch}
+.piece-selection{display:grid;grid-template-columns:minmax(180px,310px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;padding-block:36px;border-top:1px solid var(--line)}
+.piece-selection-photo{display:block;background:var(--paper)}
+.piece-selection-photo img{width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.piece-selection h3{font-size:clamp(25px,2.7vw,34px);line-height:1.2;max-width:29ch}
+.piece-selection p{max-width:65ch;margin-top:18px;color:var(--muted)}
+.piece-selection details{margin-top:18px;padding:16px 0;border-block:1px solid var(--line)}
+.piece-selection details summary,.application-faq summary{cursor:pointer;font-weight:600;padding-block:6px;line-height:1.5}
+.piece-selection details a{display:inline-block;margin-top:14px}
+.piece-choice-links{padding-left:20px;margin:22px 0 0;display:grid;gap:10px}
+.piece-selection,.guide-decision tr[id],.application-decision{scroll-margin-top:30px}
+.application-decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;margin-top:32px}
+.application-decision-grid article{padding-top:24px;border-top:1px solid var(--line)}
+.application-decision h3{font-size:24px;line-height:1.3}
+.application-decision p{margin-top:18px;max-width:62ch}
+.application-next{padding-top:25px;border-top:1px solid var(--line);margin-top:32px!important}
+.packing-steps{padding:0;margin:32px 0 0;list-style:none;counter-reset:packing;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.packing-steps li{counter-increment:packing;border-top:1px solid var(--line);padding-top:18px}
+.packing-steps li:before{content:'0' counter(packing);display:block;color:var(--accent);font-size:14px;margin-bottom:20px}
+.application-faq{max-width:1000px}
+.application-faq h2{margin-bottom:30px}
+.application-faq details{border-top:1px solid var(--line);padding-block:15px}
+.application-faq details:last-child{border-bottom:1px solid var(--line)}
+.application-faq p{max-width:75ch;color:var(--muted);margin-block:16px 10px}
+@media(max-width:850px){.packing-steps{grid-template-columns:1fr}.packing-steps li{display:block}.piece-selection{grid-template-columns:minmax(160px,.7fr) 1fr}}
+@media(max-width:650px){.buyer-route-grid,.planning-links ul,.application-decision-grid,.piece-selection{grid-template-columns:1fr}.buyer-route-grid>a:nth-child(even){border-left:0;padding-left:0}.buyer-route-grid>a{padding-right:0;gap:12px}.planning-links{padding:24px}.piece-selection{gap:24px}.piece-selection-photo{max-width:100%;width:100%}.piece-selection h3{max-width:none}}
