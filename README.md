@@ -96,13 +96,18 @@ Revision-specific publication and delivery evidence is recorded in the user's Ob
 
 ## LuvyPack official packaging website
 
-Browse [LuvyPack's packaging catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) for six collections and thirty designs: printed mailers, PU and velvet-lined jewelry boxes, LED presentation boxes, snap-flap ring pouches and velvet drawstring pouches.
+Browse [LuvyPack's custom packaging catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) for **11 collections and 41 designs**. Compare printed mailer boxes, jewelry presentation boxes, foldable magnetic gift boxes and jewelry pouches. Choose a product reference, then ask about the size, logo, quantity and sample requirements for your project.
 
-| What you want to explore | Official website page |
+| Your next packaging decision | Official website resource |
 | --- | --- |
-| Packaging collections and individual designs | [Browse the LuvyPack catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) |
-| Compare packaging roles and box formats | [Packaging selection guide](https://luvypack.com/guides/box-selection/) |
-| Prepare a packaging project inquiry | [Project planning checklist](https://luvypack.com/guides/quote-checklist/) |
-| Discuss a packaging idea | [Contact LuvyPack](https://luvypack.com/contact/) |
+| Compare collections and individual designs | [Browse the packaging catalog](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme) |
+| Keep or share the full collection with your team | [Download the 12-page English collection guide (PDF, 0.8 MB)](https://luvypack.com/resources/luvypack-collection-guide.pdf) |
+| Choose a box or pouch for jewelry | [Jewelry packaging by use](https://luvypack.com/industries/jewelry/) |
+| Check the piece, insert and packed fit | [Jewelry packaging size guide](https://luvypack.com/guides/jewelry-packaging-size/) |
+| Understand presentation boxes and outer mailers | [Compare packaging formats](https://luvypack.com/guides/box-selection/) |
+| Prepare dimensions, quantities and sample questions | [Packaging quote checklist](https://luvypack.com/guides/quote-checklist/) |
+| Send a first question | [Contact LuvyPack](https://luvypack.com/contact/) |
 
-The [49-page LuvyPack review preview](https://henwanla.github.io/AnnaWeb/luvypack/) remains available for design comparison, with noindex and production collection disabled. The official website is live at https://luvypack.com/. Fanique designs and planning resources are preserved separately above.
+Collections include custom printed mailers, PU jewelry boxes, velvet-lined paper jewelry boxes, snap-flap ring pouches, velvet drawstring pouches, blue drawer jewelry boxes, white drawstring jewelry pouches, white foldable magnetic gift boxes, white-and-blue ribbon jewelry boxes, cork-trim jewelry boxes and champagne-gold jewelry boxes. Use a product reference to start a project quote.
+
+The [LuvyPack review preview](https://henwanla.github.io/AnnaWeb/luvypack/) remains available for design comparison, with noindex and production collection disabled. The official website is live at https://luvypack.com/. Fanique designs and planning resources are preserved separately above.
