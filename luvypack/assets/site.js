@@ -481,4 +481,6 @@
     if (ga4Available) window['ga-disable-' + cfg.measurementId] = consent !== 'granted';
     if (consent === 'granted') startAnalytics();
   }
+  // Leave the fallback visible if this script or its prerequisites fail to load.
+  document.querySelectorAll('[data-context-fallback]').forEach(el => { el.hidden = true; });
 }());
