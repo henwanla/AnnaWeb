@@ -104,7 +104,7 @@
     if (record) {
       const entry = cfg.traffic.pages.find(p => p.id === record.page_id);
       const ref = core.arrival(cfg.traffic, cfg.origin + entry.path, record.referrer_origin || '').referrer_signal;
-      Object.assign(values, {source_scope: 'consented_tab_observation', source_evidence: record.evidence,
+      Object.assign(values, {source_scope: 'tab_observation', source_evidence: record.evidence,
         source_entry_page_id: entry.id, source_entry_page_variant: entry.page_variant || 'unknown',
         source_referrer_channel: ref.source, source_referrer_medium: ref.medium});
       if (record.evidence === 'registered_url_labels') {
