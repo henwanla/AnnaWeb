@@ -2,6 +2,10 @@
 
 Six alternative page designs and optional procurement resources for Fanique. These previews are separate from the live website; they do not replace getfanique.com. The [LuvyPack packaging website and review](#luvypack-official-packaging-website) are listed below.
 
+## LuvyPack packaging resources
+
+Explore [custom jewelry boxes, pouches and printed mailers](https://luvypack.com/products/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=repository_readme), or use the [free packaging fit calculator](https://henwanla.github.io/AnnaWeb/resources/packaging-fit/) to compare an item's dimensions with usable box space. The [LuvyPack resource list](#luvypack-official-packaging-website) includes sizing, artwork and quote preparation guides.
+
 ## Official Fanique website
 
 Visit the **[Fanique official website](https://getfanique.com/)** for the current product and company information.
