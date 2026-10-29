@@ -308,7 +308,7 @@
     }
     document.querySelectorAll('[data-inquiry-form]').forEach(setSourceFields);
     document.querySelectorAll('[data-analytics-banner]').forEach(el => el.remove());
-    preferences.querySelector('[data-consent-status]').textContent = value === 'granted' && analyticsAvailable ? 'Analytics is on.' : 'Analytics is off.';
+    preferences.querySelector('[data-consent-status]').textContent = value === 'granted' && analyticsAvailable ? 'Visit analytics is on.' : 'Visit analytics is off.';
     if (preferences.open && typeof preferences.close === 'function') preferences.close();
   }
   function show(dialog, opener) {
@@ -497,7 +497,7 @@
       return;
     }
     if (target.matches('[data-analytics-preferences]')) {
-      preferences.querySelector('[data-consent-status]').textContent = analyticsAvailable && consent === 'granted' ? 'Analytics is on.' : 'Analytics is off.';
+      preferences.querySelector('[data-consent-status]').textContent = analyticsAvailable && consent === 'granted' ? 'Visit analytics is on.' : 'Visit analytics is off.';
       if (!analyticsAvailable) {
         preferences.querySelector('[data-analytics-description]').textContent = 'Analytics is currently off for this site version.';
         preferences.querySelector('[data-consent="granted"]').hidden = true;
