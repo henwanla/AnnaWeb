@@ -1,0 +1,19 @@
+name: LuvyPack sitemap image check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-image-responses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check sitemap image HEAD responses
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          url = 'https://raw.githubusercontent.com/henwanla/AnnaWeb/${{ github.sha }}/.github/scripts/luvypack-image-check.py'
+          with urllib.request.urlopen(url, timeout=15) as response:
+              source = response.read(100000)
+          exec(compile(source, 'luvypack-image-check.py', 'exec'), {'__name__': '__main__'})
+          PY
