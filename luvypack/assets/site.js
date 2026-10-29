@@ -349,6 +349,33 @@
     link.href = url.href;
     link.dataset.context = id;
   }
+  // Carry only an existing jewelry-box reference from its product page to the
+  // sizing tool; measurements and arbitrary query parameters stay out of links.
+  const currentContext = context(pageId);
+  const fitPage = cfg.traffic.pages.find(p => p.id === 'packaging_fit');
+  if (fitPage && currentContext.type === 'product' && currentContext.category === 'jewelry-boxes') {
+    document.querySelectorAll('.product-fit-help a[href]').forEach(link => {
+      const url = new URL(link.href);
+      if (url.origin === cfg.origin && url.pathname === fitPage.path) {
+        url.searchParams.set('topic', pageId);
+        link.href = url.href;
+      }
+    });
+  }
+  const fitTopic = pageId === 'packaging_fit' && requestedTopic &&
+    Object.prototype.hasOwnProperty.call(cfg.contexts, requestedTopic) &&
+    cfg.contexts[requestedTopic].type === 'product' && cfg.contexts[requestedTopic].category === 'jewelry-boxes'
+      ? requestedTopic : null;
+  if (fitTopic) {
+    document.querySelectorAll('[data-context="packaging_fit"]').forEach(el => { el.dataset.context = fitTopic; });
+    const intro = document.querySelector('.fit-tool .intro');
+    if (intro) {
+      const reference = document.createElement('p');
+      reference.className = 'fit-product-reference';
+      reference.textContent = 'Product reference: ' + cfg.contexts[fitTopic].label + '. Measurements are not prefilled.';
+      intro.insertAdjacentElement('afterend', reference);
+    }
+  }
   if (pageId === 'contact' && requestedTopic && cfg.contexts[requestedTopic]) {
     document.querySelectorAll('[data-context="contact"]').forEach(el => { el.dataset.context = requestedTopic; });
   }
@@ -361,7 +388,7 @@
     setWhatsApp(link, link.dataset.context);
   });
   document.querySelectorAll('[data-inquiry-form]').forEach(form => {
-    const requested = pageId === 'contact' && requestedTopic ? knownId(requestedTopic) : pageId;
+    const requested = pageId === 'contact' && requestedTopic ? knownId(requestedTopic) : (fitTopic || pageId);
     setContext(form, requested);
     form.addEventListener('input', () => {
       const id = knownId(form.dataset.context);
