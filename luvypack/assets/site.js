@@ -349,31 +349,51 @@
     link.href = url.href;
     link.dataset.context = id;
   }
-  // Carry only an existing jewelry-box reference from its product page to the
-  // sizing tool; measurements and arbitrary query parameters stay out of links.
+  // Carry only a registered jewelry-box reference through measuring guidance.
+  // Never put dimensions or arbitrary query parameters in generated links.
   const currentContext = context(pageId);
   const fitPage = cfg.traffic.pages.find(p => p.id === 'packaging_fit');
-  if (fitPage && currentContext.type === 'product' && currentContext.category === 'jewelry-boxes') {
+  const sizePage = cfg.traffic.pages.find(p => p.id === 'jewelry_size');
+  if (currentContext.type === 'product' && currentContext.category === 'jewelry-boxes') {
     document.querySelectorAll('.product-fit-help a[href]').forEach(link => {
       const url = new URL(link.href);
-      if (url.origin === cfg.origin && url.pathname === fitPage.path) {
+      if (url.origin === cfg.origin && [fitPage, sizePage].some(p => p && url.pathname === p.path)) {
         url.searchParams.set('topic', pageId);
         link.href = url.href;
       }
     });
   }
-  const fitTopic = pageId === 'packaging_fit' && requestedTopic &&
+  const referenceTopic = ['packaging_fit', 'jewelry_size'].includes(pageId) && requestedTopic &&
     Object.prototype.hasOwnProperty.call(cfg.contexts, requestedTopic) &&
     cfg.contexts[requestedTopic].type === 'product' && cfg.contexts[requestedTopic].category === 'jewelry-boxes'
       ? requestedTopic : null;
-  if (fitTopic) {
-    document.querySelectorAll('[data-context="packaging_fit"]').forEach(el => { el.dataset.context = fitTopic; });
-    const intro = document.querySelector('.fit-tool .intro');
+  if (referenceTopic) {
+    document.querySelectorAll('[data-context="' + pageId + '"]').forEach(el => { el.dataset.context = referenceTopic; });
+    const intro = document.querySelector(pageId === 'packaging_fit' ? '.fit-tool .intro' : 'article.guide > header .lead');
     if (intro) {
       const reference = document.createElement('p');
       reference.className = 'fit-product-reference';
-      reference.textContent = 'Product reference: ' + cfg.contexts[fitTopic].label + '. Measurements are not prefilled.';
+      reference.textContent = 'Product reference: ' + cfg.contexts[referenceTopic].label + '.';
+      if (pageId === 'packaging_fit') reference.append(' Measurements are not prefilled.');
+      else {
+        const productLink = document.createElement('a');
+        productLink.href = new URL(cfg.contexts[referenceTopic].path, cfg.origin).href;
+        productLink.textContent = 'View product';
+        const clearLink = document.createElement('a');
+        clearLink.href = new URL(sizePage.path, cfg.origin).href;
+        clearLink.textContent = 'Clear reference';
+        reference.append(' ', productLink, ' · ', clearLink);
+      }
       intro.insertAdjacentElement('afterend', reference);
+    }
+    if (pageId === 'jewelry_size' && fitPage) {
+      document.querySelectorAll('article.guide a[href]').forEach(link => {
+        const url = new URL(link.href);
+        if (url.origin === cfg.origin && url.pathname === fitPage.path) {
+          url.searchParams.set('topic', referenceTopic);
+          link.href = url.href;
+        }
+      });
     }
   }
   if (pageId === 'contact' && requestedTopic && cfg.contexts[requestedTopic]) {
@@ -388,7 +408,7 @@
     setWhatsApp(link, link.dataset.context);
   });
   document.querySelectorAll('[data-inquiry-form]').forEach(form => {
-    const requested = pageId === 'contact' && requestedTopic ? knownId(requestedTopic) : (fitTopic || pageId);
+    const requested = pageId === 'contact' && requestedTopic ? knownId(requestedTopic) : (referenceTopic || pageId);
     setContext(form, requested);
     form.addEventListener('input', () => {
       const id = knownId(form.dataset.context);
