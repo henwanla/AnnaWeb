@@ -221,7 +221,7 @@
       const event = payload(name, id, details);
       if (!event) return false;
       // These events are GA4-only: the existing D1 event constraint is unchanged.
-      let sent = ['comparison_select', 'fit_calculation'].includes(name) ? false : sendOwned(event, id);
+      let sent = ['comparison_select', 'fit_calculation', 'fit_tool_open'].includes(name) ? false : sendOwned(event, id);
       if (ga4Available && tagStarted && typeof window.gtag === 'function') {
         window.gtag('event', event.name, event.params);
         sent = true;
@@ -421,6 +421,13 @@
   document.addEventListener('click', event => {
     const target = event.target.closest('a, button');
     if (!target) return;
+    if (target.tagName === 'A' && !event.defaultPrevented && pageId !== 'packaging_fit') {
+      const fitPage = cfg.traffic.pages.find(p => p.id === 'packaging_fit');
+      if (fitPage && target.origin === cfg.origin && target.pathname === fitPage.path) {
+        // Record a click only; never include query strings or measurement data.
+        track('fit_tool_open', pageId);
+      }
+    }
     if (target.matches('[data-close-dialog]')) {
       const dialog = target.closest('dialog');
       if (dialog && typeof dialog.close === 'function') dialog.close();
