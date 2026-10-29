@@ -12,6 +12,20 @@
  unit.addEventListener('change',()=>{const factor=previous==='mm'?1/25.4:25.4;for(const field of [...item,...box,gap]){if(field.value!==''){const n=Number(field.value);if(Number.isFinite(n))field.value=round(n*factor);}}previous=unit.value;invalidate();});
  form.addEventListener('reset',()=>{invalidate();previous='mm';});
  document.getElementById('example').addEventListener('click',()=>{unit.value='mm';previous='mm';[72,50,28].forEach((v,i)=>item[i].value=v);[100,80,40].forEach((v,i)=>box[i].value=v);gap.value=2;calculate();});
+ document.getElementById('prepare-question').addEventListener('click',()=>{
+  const parse=fields=>fields.map(field=>field.value===''?null:Number(field.value));
+  const a=parse(item),b=parse(box),clearance=gap.value===''?null:Number(gap.value);
+  if(!a.some(v=>v!==null)||[...a,...b].some(v=>v!==null&&(!Number.isFinite(v)||v<=0))||
+     (clearance!==null&&(!Number.isFinite(clearance)||clearance<0))){
+   invalidate();message('Check your measurements','Enter at least one item dimension. Use positive values for dimensions and zero or more for clearance.');return;
+  }
+  const describe=v=>v.map(x=>x===null?'not provided':round(x)).join(' × ')+' '+unit.value;
+  message('Question prepared','The fit has not been checked. Copy these details into your question and ask about the available space.');
+  summary.value='Item overall (length × width × height): '+describe(a)+'\nUsable inner space (length × width × height): '+describe(b)+
+   (clearance===null?'':'\nClearance per side: '+round(clearance)+' '+unit.value)+
+   '\nFit: not checked. Please advise on the box, insert and sample.';
+  copyStatus.textContent='';copyArea.hidden=false;
+ });
  function calculate(){
   const values=[...item,...box].map(x=>x.value===''?NaN:Number(x.value));const clearance=gap.value===''?0:Number(gap.value);
   if(values.some(v=>!Number.isFinite(v)||v<=0)||!Number.isFinite(clearance)||clearance<0){invalidate();message('Check your measurements','Enter a positive number for each item and box dimension, and zero or more for clearance.');return;}
