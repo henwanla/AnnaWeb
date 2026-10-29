@@ -220,8 +220,8 @@
     try {
       const event = payload(name, id, details);
       if (!event) return false;
-      // comparison_select is GA4-only: the existing D1 event constraint is unchanged.
-      let sent = name === 'comparison_select' ? false : sendOwned(event, id);
+      // These events are GA4-only: the existing D1 event constraint is unchanged.
+      let sent = ['comparison_select', 'fit_calculation'].includes(name) ? false : sendOwned(event, id);
       if (ga4Available && tagStarted && typeof window.gtag === 'function') {
         window.gtag('event', event.name, event.params);
         sent = true;
@@ -412,6 +412,10 @@
         sending.delete(form);
       }
     });
+  });
+
+  document.addEventListener('luvypack:fit-calculated', () => {
+    if (pageId === 'packaging_fit') track('fit_calculation', pageId);
   });
 
   document.addEventListener('click', event => {

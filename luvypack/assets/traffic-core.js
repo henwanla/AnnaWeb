@@ -9,6 +9,7 @@
     contact_click:'点击联系入口；不等于发送或收到消息',
     scenario_select:'选择场景入口；不证明采购意图',
     comparison_select:'点击同用途产品比较链接；不等于目标页加载或询盘',
+    fit_calculation:'用户提交有效的尺寸比较；不等于询盘、收件或成交',
     spec_open:'主动打开规格说明；不等于认同质量',
     customization_start:'进入定制说明或操作；不等于提交需求',
     catalog_click:'点击资料下载入口；不等于下载完成',

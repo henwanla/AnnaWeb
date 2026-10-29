@@ -32,8 +32,8 @@
   }
   const dimensions=v=>v.map(round).join(' × ')+' '+unit.value;
   summary.value='Item overall: '+dimensions(a)+'\nUsable inner space: '+dimensions(b)+'\nClearance per side: '+round(clearance)+' '+unit.value+'\nResult: '+(matches.length?'dimension match possible':'no axis alignment fits')+(shortfall?'\n'+shortfall:'')+'\nPlease confirm the insert, opening and sample.';
-  copyStatus.textContent='';copyArea.hidden=false;
+  copyStatus.textContent='';copyArea.hidden=false;return true;
  }
- form.addEventListener('submit',e=>{e.preventDefault();calculate();});
+ form.addEventListener('submit',e=>{e.preventDefault();if(calculate())document.dispatchEvent(new Event('luvypack:fit-calculated'));});
 }());
 
