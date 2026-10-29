@@ -363,9 +363,21 @@
       }
     });
   }
-  const referenceTopic = ['packaging_fit', 'jewelry_size'].includes(pageId) && requestedTopic &&
-    Object.prototype.hasOwnProperty.call(cfg.contexts, requestedTopic) &&
-    cfg.contexts[requestedTopic].type === 'product' && cfg.contexts[requestedTopic].category === 'jewelry-boxes'
+  // A mailer family has a direct tool entry; retain that registered reference only.
+  if (pageId === 'lp-p01' && currentContext.type === 'family' && fitPage) {
+    document.querySelectorAll('.family-fit-tool[href]').forEach(link => {
+      const url = new URL(link.href);
+      if (url.origin === cfg.origin && url.pathname === fitPage.path) {
+        url.searchParams.set('topic', pageId);
+        link.href = url.href;
+      }
+    });
+  }
+  const knownReference = requestedTopic && Object.prototype.hasOwnProperty.call(cfg.contexts, requestedTopic)
+    ? cfg.contexts[requestedTopic] : null;
+  const isJewelryProduct = knownReference && knownReference.type === 'product' && knownReference.category === 'jewelry-boxes';
+  const isMailerFamily = pageId === 'packaging_fit' && requestedTopic === 'lp-p01' && knownReference && knownReference.type === 'family';
+  const referenceTopic = ['packaging_fit', 'jewelry_size'].includes(pageId) && (isJewelryProduct || isMailerFamily)
       ? requestedTopic : null;
   if (referenceTopic) {
     document.querySelectorAll('[data-context="' + pageId + '"]').forEach(el => { el.dataset.context = referenceTopic; });
@@ -373,7 +385,7 @@
     if (intro) {
       const reference = document.createElement('p');
       reference.className = 'fit-product-reference';
-      reference.textContent = 'Product reference: ' + cfg.contexts[referenceTopic].label + '.';
+      reference.textContent = (isMailerFamily ? 'Collection reference: ' : 'Product reference: ') + cfg.contexts[referenceTopic].label + '.';
       if (pageId === 'packaging_fit') reference.append(' Measurements are not prefilled.');
       else {
         const productLink = document.createElement('a');
