@@ -902,7 +902,7 @@ figure{margin:0}
 
 /* 1028 intake preview: catalog ordering details stay at the comparison level. */
 .catalog-section .format-card{border-bottom:1px solid var(--line);padding-bottom:24px;min-width:0}
-.catalog-section .card-media{position:relative}
+.format-card .card-media{position:relative}
 .collection-badge{position:absolute;left:14px;top:14px;padding:5px 9px;background:#fffdf8e8;color:#53402c;font-size:11px;letter-spacing:.06em;border:1px solid #d8c7ac;border-radius:2px;pointer-events:none}
 .catalog-facts{padding-top:18px;font-size:13px}
 .catalog-facts dl{display:grid;grid-template-columns:1fr 1fr;border-block:1px solid var(--line);padding:14px 0;gap:14px}
