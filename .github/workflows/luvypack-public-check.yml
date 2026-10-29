@@ -1,0 +1,19 @@
+name: LuvyPack one-time public check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  read-only-public-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Check public endpoints
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          url = 'https://raw.githubusercontent.com/henwanla/AnnaWeb/${{ github.sha }}/.github/scripts/luvypack-public-check.py'
+          with urllib.request.urlopen(url, timeout=15) as response:
+              source = response.read(100000)
+          exec(compile(source, 'luvypack-public-check.py', 'exec'), {'__name__': '__main__'})
+          PY
