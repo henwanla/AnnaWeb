@@ -12,7 +12,8 @@
  unit.addEventListener('change',()=>{const factor=previous==='mm'?1/25.4:25.4;for(const field of [...item,...box,gap]){if(field.value!==''){const n=Number(field.value);if(Number.isFinite(n))field.value=round(n*factor);}}previous=unit.value;invalidate();});
  form.addEventListener('reset',()=>{invalidate();previous='mm';});
  document.getElementById('example').addEventListener('click',()=>{unit.value='mm';previous='mm';[72,50,28].forEach((v,i)=>item[i].value=v);[100,80,40].forEach((v,i)=>box[i].value=v);gap.value=2;calculate();});
- document.getElementById('prepare-question').addEventListener('click',()=>{
+ const prepareQuestion=document.getElementById('prepare-question');
+ if(prepareQuestion)prepareQuestion.addEventListener('click',()=>{
   const parse=fields=>fields.map(field=>field.value===''?null:Number(field.value));
   const a=parse(item),b=parse(box),clearance=gap.value===''?null:Number(gap.value);
   if(!a.some(v=>v!==null)||[...a,...b].some(v=>v!==null&&(!Number.isFinite(v)||v<=0))||
