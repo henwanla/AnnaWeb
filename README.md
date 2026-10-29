@@ -110,7 +110,7 @@ Browse [LuvyPack's custom packaging catalog](https://luvypack.com/products/?utm_
 | Check the piece, insert and packed fit | [Jewelry packaging size guide](https://luvypack.com/guides/jewelry-packaging-size/) |
 | Check item and usable box dimensions before discussing a sample | [Free packaging fit calculator](https://luvypack.com/tools/packaging-fit/?utm_source=github&utm_medium=referral&utm_campaign=packaging_launch&utm_content=fit_repository_readme) |
 | Understand presentation boxes and outer mailers | [Compare packaging formats](https://luvypack.com/guides/box-selection/) |
-| Prepare dimensions, quantities and sample questions | [Packaging quote checklist](https://luvypack.com/guides/quote-checklist/) |
+| Prepare dimensions, quantities and sample questions | [Packaging quote checklist](https://luvypack.com/guides/quote-checklist/) · [Download the blank packaging brief (CSV)](https://luvypack.com/resources/packaging-brief.csv) |
 | Send a first question | [Contact LuvyPack](https://luvypack.com/contact/) |
 
 Choose a collection by what you need to package:
