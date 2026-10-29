@@ -26,7 +26,8 @@
     'linkedin.com':['linkedin','social'],'youtube.com':['youtube','video'],'github.com':['github','referral'],
     'henwanla.github.io':['github','referral'],
     'chatgpt.com':['chatgpt','ai'],'perplexity.ai':['perplexity','ai'],
-    'copilot.microsoft.com':['copilot','ai']
+    'copilot.microsoft.com':['copilot','ai'], 'claude.ai':['claude','ai'],
+    'gemini.google.com':['gemini','ai']
   };
   function object(v,label){if(!v||typeof v!=='object'||Array.isArray(v))throw Error(label+' 应为对象');}
   function fields(v,allowed,label){object(v,label);for(const k of Object.keys(v))if(!allowed.includes(k))throw Error(label+' 未支持字段：'+k);}
