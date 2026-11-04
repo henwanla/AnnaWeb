@@ -9,7 +9,7 @@
  function invalidate(){result.hidden=true;copyArea.hidden=true;summary.value='';copyStatus.textContent='';}
  for(const field of [...item,...box,gap])field.addEventListener('input',invalidate);
  document.getElementById('copy-summary').addEventListener('click',async()=>{try{if(!navigator.clipboard||typeof navigator.clipboard.writeText!=='function')throw new Error('Clipboard unavailable');await navigator.clipboard.writeText(summary.value);copyStatus.textContent='Copied. Paste it into your message when ready.';}catch(_){summary.focus();summary.select();copyStatus.textContent='Copy is unavailable here. Select the summary above and copy it manually.';}});
- unit.addEventListener('change',()=>{const factor=previous==='mm'?1/25.4:25.4;for(const field of [...item,...box,gap]){if(field.value!==''){const n=Number(field.value);if(Number.isFinite(n))field.value=round(n*factor);}}previous=unit.value;invalidate();});
+ unit.addEventListener('change',()=>{const mmPerUnit={mm:1,cm:10,in:25.4};const factor=mmPerUnit[previous]/mmPerUnit[unit.value];for(const field of [...item,...box,gap]){if(field.value!==''){const n=Number(field.value);if(Number.isFinite(n))field.value=round(n*factor);}}previous=unit.value;invalidate();});
  form.addEventListener('reset',()=>{invalidate();previous='mm';});
  document.getElementById('example').addEventListener('click',()=>{unit.value='mm';previous='mm';[72,50,28].forEach((v,i)=>item[i].value=v);[100,80,40].forEach((v,i)=>box[i].value=v);gap.value=2;calculate();});
  const prepareQuestion=document.getElementById('prepare-question');

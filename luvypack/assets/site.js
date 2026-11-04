@@ -386,8 +386,13 @@
       const reference = document.createElement('p');
       reference.className = 'fit-product-reference';
       reference.textContent = (isMailerFamily ? 'Collection reference: ' : 'Product reference: ') + cfg.contexts[referenceTopic].label + '.';
-      if (pageId === 'packaging_fit') reference.append(' Measurements are not prefilled.');
-      else {
+      if (pageId === 'packaging_fit') {
+        reference.append(' Measurements are not prefilled. Copy your summary before leaving if you want to keep it. ');
+        const returnLink = document.createElement('a');
+        returnLink.href = new URL(cfg.contexts[referenceTopic].path, cfg.origin).href;
+        returnLink.textContent = isMailerFamily ? 'View referenced collection' : 'View referenced product';
+        reference.append(returnLink);
+      } else {
         const productLink = document.createElement('a');
         productLink.href = new URL(cfg.contexts[referenceTopic].path, cfg.origin).href;
         productLink.textContent = 'View product';
